@@ -17,6 +17,7 @@ import {
   X,
 } from "lucide-react";
 import logo from "@/assets/samanade-logo.jpg.asset.json";
+import heroImage from "@/assets/hero-construction.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -194,11 +195,11 @@ function Index() {
                 </a>
               </div>
             </div>
-            <div className="surface-card mx-auto w-full max-w-sm p-6">
+            <div className="overflow-hidden rounded-xl border border-border shadow-lg">
               <img
-                src={logo.url}
-                alt="Samanade C.R.D Enterprise — hammers, crane and blue-roofed house brand mark"
-                className="w-full object-contain"
+                src={heroImage}
+                alt="Samanade C.R.D Enterprise construction site — carpenters and builders at work on a blue-roofed house in Ghana"
+                className="h-full max-h-[420px] w-full object-cover"
               />
             </div>
           </div>
