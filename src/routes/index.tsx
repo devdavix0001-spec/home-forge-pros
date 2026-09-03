@@ -207,17 +207,41 @@ function Index() {
 
         {/* Services */}
         <section id="services" className="mx-auto max-w-6xl px-4 py-16">
-          <p className="section-eyebrow">What we do</p>
-          <h2 className="mt-2 font-display text-3xl text-primary sm:text-4xl">Our Services</h2>
+          <Reveal>
+            <p className="section-eyebrow">What we do</p>
+            <h2 className="mt-2 font-display text-3xl text-primary sm:text-4xl">Our Services</h2>
+          </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <div key={s.title} className="surface-card p-5">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-secondary/10 text-secondary">
-                  <s.icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-4 font-display text-lg leading-snug text-primary">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-              </div>
+            {services.map((s, i) => (
+              <Reveal key={s.title} delay={i * 70}>
+                <div className="surface-card lift h-full p-5">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-secondary/10 text-secondary transition-transform duration-300 group-hover:scale-110">
+                    <s.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-4 font-display text-lg leading-snug text-primary">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Image strip */}
+        <section className="bg-primary/5">
+          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-3 px-4 py-10 md:grid-cols-4">
+            {gallery.slice(0, 4).map((g, i) => (
+              <Reveal key={`strip-${g.label}`} delay={i * 80}>
+                <div className="media-zoom aspect-square overflow-hidden rounded-xl border border-border shadow-lg">
+                  <img
+                    src={g.src}
+                    alt={g.label}
+                    loading="lazy"
+                    width={1024}
+                    height={768}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </Reveal>
             ))}
           </div>
         </section>
