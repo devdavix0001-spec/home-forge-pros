@@ -18,6 +18,15 @@ import {
 } from "lucide-react";
 import logo from "@/assets/samanade-logo.jpg.asset.json";
 import heroImage from "@/assets/hero-construction.jpg";
+import workCarpentry from "@/assets/work-carpentry.jpg";
+import workDoors from "@/assets/work-doors.jpg";
+import workInterior from "@/assets/work-interior.jpg";
+import workFurniture from "@/assets/work-furniture.jpg";
+import workCabinets from "@/assets/work-cabinets.jpg";
+import workSite from "@/assets/work-site.jpg";
+import videoSite from "@/assets/video-site.mp4.asset.json";
+import videoWorkshop from "@/assets/video-workshop.mp4.asset.json";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -88,7 +97,32 @@ const navLinks = [
   { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
   { label: "Work", href: "#gallery" },
+  { label: "Videos", href: "#videos" },
   { label: "Contact", href: "#contact" },
+];
+
+const gallery = [
+  { src: workCarpentry, label: "Carpentry & joinery" },
+  { src: workDoors, label: "Door fixing & installation" },
+  { src: workInterior, label: "Interior fittings & ceilings" },
+  { src: workFurniture, label: "Custom furniture" },
+  { src: workCabinets, label: "Kitchen cabinets" },
+  { src: workSite, label: "Construction site work" },
+];
+
+const videos = [
+  {
+    src: videoSite.url,
+    poster: workSite,
+    title: "On the building site",
+    text: "Scaffolding, blockwork and roofing in progress.",
+  },
+  {
+    src: videoWorkshop.url,
+    poster: workCarpentry,
+    title: "Inside the workshop",
+    text: "Sanding, assembling and finishing custom woodwork.",
+  },
 ];
 
 function Index() {
@@ -195,29 +229,67 @@ function Index() {
                 </a>
               </div>
             </div>
-            <div className="overflow-hidden rounded-xl border border-border shadow-lg">
-              <img
-                src={heroImage}
-                alt="Samanade C.R.D Enterprise construction site — carpenters and builders at work on a blue-roofed house in Ghana"
-                className="h-full max-h-[420px] w-full object-cover"
-              />
+            <div className="relative">
+              <div className="media-zoom overflow-hidden rounded-xl border border-border shadow-lg">
+                <img
+                  src={heroImage}
+                  alt="Samanade C.R.D Enterprise construction site — carpenters and builders at work on a blue-roofed house in Ghana"
+                  width={1024}
+                  height={768}
+                  className="h-full max-h-[420px] w-full object-cover"
+                />
+              </div>
+              <div className="float-soft absolute -bottom-6 -left-4 hidden w-40 overflow-hidden rounded-xl border-4 border-background shadow-xl sm:block">
+                <img
+                  src={workCarpentry}
+                  alt="Carpenter building a wardrobe in the workshop"
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                  className="h-28 w-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </section>
 
         {/* Services */}
         <section id="services" className="mx-auto max-w-6xl px-4 py-16">
-          <p className="section-eyebrow">What we do</p>
-          <h2 className="mt-2 font-display text-3xl text-primary sm:text-4xl">Our Services</h2>
+          <Reveal>
+            <p className="section-eyebrow">What we do</p>
+            <h2 className="mt-2 font-display text-3xl text-primary sm:text-4xl">Our Services</h2>
+          </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <div key={s.title} className="surface-card p-5">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-secondary/10 text-secondary">
-                  <s.icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-4 font-display text-lg leading-snug text-primary">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-              </div>
+            {services.map((s, i) => (
+              <Reveal key={s.title} delay={i * 70}>
+                <div className="surface-card lift h-full p-5">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-secondary/10 text-secondary transition-transform duration-300 group-hover:scale-110">
+                    <s.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-4 font-display text-lg leading-snug text-primary">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Image strip */}
+        <section className="bg-primary/5">
+          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-3 px-4 py-10 md:grid-cols-4">
+            {gallery.slice(0, 4).map((g, i) => (
+              <Reveal key={`strip-${g.label}`} delay={i * 80}>
+                <div className="media-zoom aspect-square overflow-hidden rounded-xl border border-border shadow-lg">
+                  <img
+                    src={g.src}
+                    alt={g.label}
+                    loading="lazy"
+                    width={1024}
+                    height={768}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </Reveal>
             ))}
           </div>
         </section>
@@ -251,27 +323,68 @@ function Index() {
 
         {/* Gallery */}
         <section id="gallery" className="mx-auto max-w-6xl px-4 py-16">
-          <p className="section-eyebrow">Portfolio</p>
-          <h2 className="mt-2 font-display text-3xl text-primary sm:text-4xl">Recent Work</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Add your project photos here — carpentry, doors, interiors and site work.
-          </p>
+          <Reveal>
+            <p className="section-eyebrow">Portfolio</p>
+            <h2 className="mt-2 font-display text-3xl text-primary sm:text-4xl">Recent Work</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              A look at our carpentry, doors, interiors and construction site work.
+            </p>
+          </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              "Carpentry project photo",
-              "Door installation photo",
-              "Interior fitting photo",
-              "Custom furniture photo",
-              "Cabinet work photo",
-              "Construction site photo",
-            ].map((label) => (
-              <div
-                key={label}
-                className="flex aspect-4/3 items-center justify-center rounded-md border-2 border-dashed border-border bg-muted p-4 text-center text-xs font-semibold tracking-wide text-muted-foreground uppercase"
-              >
-                {label}
-              </div>
+            {gallery.map((g, i) => (
+              <Reveal key={g.label} delay={i * 90}>
+                <figure className="media-zoom lift group relative aspect-4/3 overflow-hidden rounded-xl border border-border shadow-lg">
+                  <img
+                    src={g.src}
+                    alt={g.label}
+                    loading="lazy"
+                    width={1024}
+                    height={768}
+                    className="h-full w-full object-cover"
+                  />
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/90 to-transparent p-4 text-sm font-bold text-primary-foreground">
+                    {g.label}
+                  </figcaption>
+                </figure>
+              </Reveal>
             ))}
+          </div>
+        </section>
+
+        {/* Videos */}
+        <section id="videos" className="bg-muted">
+          <div className="mx-auto max-w-6xl px-4 py-16">
+            <Reveal>
+              <p className="section-eyebrow">On site</p>
+              <h2 className="mt-2 font-display text-3xl text-primary sm:text-4xl">
+                Watch Us Work
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Sample clips from our sites and workshop.
+              </p>
+            </Reveal>
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              {videos.map((v, i) => (
+                <Reveal key={v.title} delay={i * 120}>
+                  <div className="lift overflow-hidden rounded-xl border border-border bg-card shadow-lg">
+                    <video
+                      src={v.src}
+                      poster={v.poster}
+                      controls
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                      className="aspect-video w-full bg-primary object-cover"
+                    />
+                    <div className="p-4">
+                      <p className="font-display text-lg text-primary">{v.title}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">{v.text}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
 
