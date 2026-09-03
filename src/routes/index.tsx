@@ -88,7 +88,32 @@ const navLinks = [
   { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
   { label: "Work", href: "#gallery" },
+  { label: "Videos", href: "#videos" },
   { label: "Contact", href: "#contact" },
+];
+
+const gallery = [
+  { src: workCarpentry, label: "Carpentry & joinery" },
+  { src: workDoors, label: "Door fixing & installation" },
+  { src: workInterior, label: "Interior fittings & ceilings" },
+  { src: workFurniture, label: "Custom furniture" },
+  { src: workCabinets, label: "Kitchen cabinets" },
+  { src: workSite, label: "Construction site work" },
+];
+
+const videos = [
+  {
+    src: videoSite.url,
+    poster: workSite,
+    title: "On the building site",
+    text: "Scaffolding, blockwork and roofing in progress.",
+  },
+  {
+    src: videoWorkshop.url,
+    poster: workCarpentry,
+    title: "Inside the workshop",
+    text: "Sanding, assembling and finishing custom woodwork.",
+  },
 ];
 
 function Index() {
