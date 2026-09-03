@@ -195,12 +195,26 @@ function Index() {
                 </a>
               </div>
             </div>
-            <div className="overflow-hidden rounded-xl border border-border shadow-lg">
-              <img
-                src={heroImage}
-                alt="Samanade C.R.D Enterprise construction site — carpenters and builders at work on a blue-roofed house in Ghana"
-                className="h-full max-h-[420px] w-full object-cover"
-              />
+            <div className="relative">
+              <div className="media-zoom overflow-hidden rounded-xl border border-border shadow-lg">
+                <img
+                  src={heroImage}
+                  alt="Samanade C.R.D Enterprise construction site — carpenters and builders at work on a blue-roofed house in Ghana"
+                  width={1024}
+                  height={768}
+                  className="h-full max-h-[420px] w-full object-cover"
+                />
+              </div>
+              <div className="float-soft absolute -bottom-6 -left-4 hidden w-40 overflow-hidden rounded-xl border-4 border-background shadow-xl sm:block">
+                <img
+                  src={workCarpentry}
+                  alt="Carpenter building a wardrobe in the workshop"
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                  className="h-28 w-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </section>
