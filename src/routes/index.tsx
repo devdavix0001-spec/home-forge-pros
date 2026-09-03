@@ -251,27 +251,68 @@ function Index() {
 
         {/* Gallery */}
         <section id="gallery" className="mx-auto max-w-6xl px-4 py-16">
-          <p className="section-eyebrow">Portfolio</p>
-          <h2 className="mt-2 font-display text-3xl text-primary sm:text-4xl">Recent Work</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Add your project photos here — carpentry, doors, interiors and site work.
-          </p>
+          <Reveal>
+            <p className="section-eyebrow">Portfolio</p>
+            <h2 className="mt-2 font-display text-3xl text-primary sm:text-4xl">Recent Work</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              A look at our carpentry, doors, interiors and construction site work.
+            </p>
+          </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              "Carpentry project photo",
-              "Door installation photo",
-              "Interior fitting photo",
-              "Custom furniture photo",
-              "Cabinet work photo",
-              "Construction site photo",
-            ].map((label) => (
-              <div
-                key={label}
-                className="flex aspect-4/3 items-center justify-center rounded-md border-2 border-dashed border-border bg-muted p-4 text-center text-xs font-semibold tracking-wide text-muted-foreground uppercase"
-              >
-                {label}
-              </div>
+            {gallery.map((g, i) => (
+              <Reveal key={g.label} delay={i * 90}>
+                <figure className="media-zoom lift group relative aspect-4/3 overflow-hidden rounded-xl border border-border shadow-lg">
+                  <img
+                    src={g.src}
+                    alt={g.label}
+                    loading="lazy"
+                    width={1024}
+                    height={768}
+                    className="h-full w-full object-cover"
+                  />
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/90 to-transparent p-4 text-sm font-bold text-primary-foreground">
+                    {g.label}
+                  </figcaption>
+                </figure>
+              </Reveal>
             ))}
+          </div>
+        </section>
+
+        {/* Videos */}
+        <section id="videos" className="bg-muted">
+          <div className="mx-auto max-w-6xl px-4 py-16">
+            <Reveal>
+              <p className="section-eyebrow">On site</p>
+              <h2 className="mt-2 font-display text-3xl text-primary sm:text-4xl">
+                Watch Us Work
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Sample clips from our sites and workshop.
+              </p>
+            </Reveal>
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              {videos.map((v, i) => (
+                <Reveal key={v.title} delay={i * 120}>
+                  <div className="lift overflow-hidden rounded-xl border border-border bg-card shadow-lg">
+                    <video
+                      src={v.src}
+                      poster={v.poster}
+                      controls
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                      className="aspect-video w-full bg-primary object-cover"
+                    />
+                    <div className="p-4">
+                      <p className="font-display text-lg text-primary">{v.title}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">{v.text}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
 
