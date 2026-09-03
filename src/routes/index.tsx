@@ -18,6 +18,15 @@ import {
 } from "lucide-react";
 import logo from "@/assets/samanade-logo.jpg.asset.json";
 import heroImage from "@/assets/hero-construction.jpg";
+import workCarpentry from "@/assets/work-carpentry.jpg";
+import workDoors from "@/assets/work-doors.jpg";
+import workInterior from "@/assets/work-interior.jpg";
+import workFurniture from "@/assets/work-furniture.jpg";
+import workCabinets from "@/assets/work-cabinets.jpg";
+import workSite from "@/assets/work-site.jpg";
+import videoSite from "@/assets/video-site.mp4.asset.json";
+import videoWorkshop from "@/assets/video-workshop.mp4.asset.json";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
