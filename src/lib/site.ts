@@ -1,9 +1,12 @@
 import {
+  Building2,
+  Compass,
   Hammer,
   DoorOpen,
   Sofa,
   Ruler,
   PackageOpen,
+  Shapes,
   Wrench,
   Boxes,
 } from "lucide-react";
@@ -26,11 +29,27 @@ export const TIKTOK = "https://tiktok.com/@anadesamuel4";
 export const services = [
   {
     icon: PackageOpen,
-    title: "Building Material Rentals",
-    text: "Scaffolding, props, moulds and site equipment available for short or long hire.",
+    title: "Equipment & Material Rentals",
+    text: "Scaffolding, props, moulds and essential site equipment available for short or long hire.",
     detail:
-      "Hire clean, well-maintained site equipment by the day, week or month — delivered around Dodowa and greater Accra.",
+      "Hire clean, well-maintained scaffolding, props, moulds and selected building equipment by the day, week or month, with practical delivery support around Dodowa and greater Accra.",
     image: workSite,
+  },
+  {
+    icon: Building2,
+    title: "Residential & Commercial Construction",
+    text: "New builds, extensions, renovations and repairs for homes, offices and business spaces.",
+    detail:
+      "We coordinate masonry, roofing, concrete work, finishes and site repairs for residential and commercial projects, keeping workmanship, materials and timelines visible from start to handover.",
+    image: workSite,
+  },
+  {
+    icon: Compass,
+    title: "Architecture Drafting & Planning",
+    text: "Practical drawings and layout guidance to turn an idea into a buildable project.",
+    detail:
+      "Bring us your idea, plot details or rough sketch. We help develop clear architectural drafts, room layouts, elevations and material-minded plans ready for discussion with your project team.",
+    image: workInterior,
   },
   {
     icon: DoorOpen,
@@ -62,6 +81,14 @@ export const services = [
     text: "Local and modern interiors — ceilings, panelling, wardrobes and finishes.",
     detail:
       "Ceilings, wall panelling, TV walls and full room fit-outs that mix local materials with a modern finish.",
+    image: workInterior,
+  },
+  {
+    icon: Shapes,
+    title: "Moulding, Ceilings & Finishes",
+    text: "Decorative mouldings, ceiling details, wall treatments and finishing work with a clean final line.",
+    detail:
+      "We create and install mouldings, ceiling trims, feature walls, panelling and other architectural details that give homes, offices and hospitality spaces a finished identity.",
     image: workInterior,
   },
   {
