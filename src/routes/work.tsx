@@ -24,15 +24,27 @@ function WorkPage() {
       <PageHero
         eyebrow="Our work"
         title="Made for real homes and working sites"
-        subtitle="A look at the joinery, fittings and building work we deliver for homes, offices and construction projects around Dodowa."
+        subtitle="A look at the joinery, fittings, interiors and building work we deliver for homes, offices and commercial projects around Dodowa."
         image={gallery[2].src}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-16">
+      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-6 lg:py-24">
+        <div className="mb-10 flex max-w-2xl flex-col gap-3">
+          <p className="section-eyebrow">Selected work</p>
+          <h2 className="font-display text-3xl tracking-[-0.04em] text-primary sm:text-4xl">
+            Practical work, carefully finished.
+          </h2>
+          <p className="text-base leading-relaxed text-muted-foreground">
+            Each project starts with the way a space needs to work, then we bring the materials,
+            measurements and finishing details together.
+          </p>
+        </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((item, index) => (
             <Reveal key={item.label} delay={index * 70}>
-              <figure className="surface-card lift overflow-hidden">
+              <figure
+                className={`group overflow-hidden border border-border bg-background ${index === 0 ? "sm:col-span-2 lg:row-span-2" : ""}`}
+              >
                 <div className="media-zoom aspect-[4/3]">
                   <img
                     src={item.src}
@@ -40,10 +52,13 @@ function WorkPage() {
                     loading={index > 2 ? "lazy" : undefined}
                     width={1024}
                     height={768}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <figcaption className="p-4 font-display text-lg text-primary">{item.label}</figcaption>
+                <figcaption className="flex items-center justify-between gap-3 p-5 font-display text-lg text-primary">
+                  {item.label}
+                  <span className="text-xs font-extrabold text-accent">0{index + 1}</span>
+                </figcaption>
               </figure>
             </Reveal>
           ))}
