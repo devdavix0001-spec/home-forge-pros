@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
@@ -82,6 +83,13 @@ function ServicesPage() {
                 <p className="mt-5 max-w-2xl border-l-2 border-accent pl-4 text-sm leading-relaxed text-foreground/75">
                   {s.detail}
                 </p>
+                <Link
+                  to="/services/$serviceId"
+                  params={{ serviceId: s.slug }}
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-extrabold text-accent transition-[gap] hover:gap-3"
+                >
+                  Explore this service <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </article>
           </Reveal>

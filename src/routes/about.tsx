@@ -93,7 +93,7 @@ function AboutPage() {
           </p>
         </Reveal>
         <Reveal delay={120}>
-          <div className="media-zoom overflow-hidden rounded-xl border border-border shadow-lg">
+          <div className="media-zoom overflow-hidden rounded-xl border border-border">
             <img
               src={workInterior}
               alt="Finished modern interior with fitted ceiling and wardrobe"

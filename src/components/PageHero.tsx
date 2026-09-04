@@ -29,7 +29,7 @@ export function PageHero({
           {children && <div className="mt-6 flex flex-wrap gap-3">{children}</div>}
         </div>
         {image && (
-          <div className="media-zoom relative min-h-64 overflow-hidden rounded-sm border border-border bg-primary shadow-lg md:min-h-80">
+          <div className="media-zoom relative min-h-64 overflow-hidden rounded-sm border border-border bg-primary md:min-h-80">
             <img src={image} alt="" aria-hidden="true" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-primary/10" />
           </div>

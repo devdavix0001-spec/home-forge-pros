@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MessageCircle, Phone, Plus } from "lucide-react";
 import heroImage from "@/assets/hero-construction.jpg";
-import workCarpentry from "@/assets/work-carpentry.jpg";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
 import { services, gallery, PHONE_1, WHATSAPP } from "@/lib/site";
@@ -75,16 +74,6 @@ function Index() {
               <p className="mt-1 max-w-[10rem] text-xs font-bold uppercase tracking-[0.12em] text-primary-foreground/75">
                 Brief to build, made clear
               </p>
-            </div>
-            <div className="float-soft absolute -bottom-6 -left-4 hidden w-40 overflow-hidden rounded-sm border-4 border-primary shadow-xl sm:block">
-              <img
-                src={workCarpentry}
-                alt="Carpenter building a wardrobe in the workshop"
-                loading="lazy"
-                width={1024}
-                height={768}
-                className="h-28 w-full object-cover"
-              />
             </div>
           </div>
         </div>

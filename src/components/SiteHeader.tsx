@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowUpRight, Menu, PhoneCall, X } from "lucide-react";
-import logo from "@/assets/samanade-logo.jpg.asset.json";
+import logo from "@/assets/samanade-logo.jpg";
 import { navLinks, PHONE_1 } from "@/lib/site";
 
 export function SiteHeader() {
@@ -18,7 +18,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 lg:px-6">
         <Link to="/" className="flex min-w-0 items-center gap-3">
           <img
-            src={logo.url}
+            src={logo}
             alt="Samanade C.R.D Enterprise logo"
             className="h-12 w-12 shrink-0 rounded-sm object-contain mix-blend-multiply"
           />

@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Facebook, Music2, PhoneCall } from "lucide-react";
-import logo from "@/assets/samanade-logo.jpg.asset.json";
+import logo from "@/assets/samanade-logo.jpg";
 import { navLinks, PHONE_1, PHONE_2, FACEBOOK, TIKTOK, ADDRESS } from "@/lib/site";
 
 export function SiteFooter() {
@@ -11,7 +11,7 @@ export function SiteFooter() {
         <div className="min-w-0">
           <div className="flex items-center gap-3">
             <img
-              src={logo.url}
+              src={logo}
               alt="Samanade C.R.D Enterprise logo"
               className="h-12 w-12 shrink-0 rounded-sm bg-card object-contain p-1"
             />
