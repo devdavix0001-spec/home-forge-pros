@@ -120,6 +120,71 @@ function ServiceDetailPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20 lg:px-6 lg:py-24">
+        <Reveal>
+          <p className="section-eyebrow">A good fit when you need</p>
+          <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-[-0.04em] text-primary sm:text-4xl">
+            Practical support without losing the detail.
+          </h2>
+        </Reveal>
+        <div className="mt-10 grid gap-8 md:grid-cols-3">
+          {[
+            [
+              "A defined task",
+              "You already know the part of the project you need help with and want a focused, careful delivery.",
+            ],
+            [
+              "A connected project",
+              "You need several trades to work together so materials, measurements and finish stay aligned.",
+            ],
+            [
+              "A reliable next step",
+              "You have an idea and need someone practical to help clarify the scope and move it forward.",
+            ],
+          ].map(([title, text], index) => (
+            <Reveal key={title} delay={index * 80}>
+              <article className="border-t-2 border-secondary pt-5">
+                <p className="text-xs font-extrabold text-accent">0{index + 1}</p>
+                <h3 className="mt-5 font-display text-xl text-primary">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-muted">
+        <div className="mx-auto max-w-7xl px-5 py-16 lg:px-6 lg:py-20">
+          <Reveal>
+            <p className="section-eyebrow">Questions we clarify early</p>
+            <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-[-0.04em] text-primary sm:text-4xl">
+              Detail makes the work easier to price and deliver.
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-3">
+            {[
+              [
+                "What is the space?",
+                "Home, office, shop, hospitality venue, event environment or active building site.",
+              ],
+              [
+                "What is the finish?",
+                "The look, level of durability, maintenance needs and material preference that matter most.",
+              ],
+              [
+                "What is the timing?",
+                "The target start, access conditions and deadline that shape the delivery plan.",
+              ],
+            ].map(([title, text]) => (
+              <div key={title} className="bg-background p-6 lg:p-8">
+                <h3 className="font-display text-xl text-primary">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-6 lg:py-24">
         <div className="flex items-end justify-between gap-5">
           <div>
             <p className="section-eyebrow">Continue exploring</p>

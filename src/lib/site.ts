@@ -1,4 +1,15 @@
-import { Building2, Hammer, DoorOpen, Sofa, Ruler, PackageOpen, Wrench, Boxes } from "lucide-react";
+import {
+  Building2,
+  Compass,
+  Hammer,
+  DoorOpen,
+  Sofa,
+  Ruler,
+  PackageOpen,
+  Shapes,
+  Wrench,
+  Boxes,
+} from "lucide-react";
 import workCarpentry from "@/assets/work-carpentry.jpg";
 import workDoors from "@/assets/work-doors.jpg";
 import workInterior from "@/assets/work-interior.jpg";
@@ -35,6 +46,16 @@ export const services = [
     detail:
       "Hire clean, well-maintained construction materials and site equipment by the day, week or month. We can also help with delivery, positioning, fixing and practical setup around Dodowa and greater Accra.",
     image: workSite,
+  },
+  {
+    slug: "architecture-drafting-and-planning",
+    navTitle: "Architecture Drafting",
+    icon: Compass,
+    title: "Architecture Drafting & Planning",
+    text: "Practical drawings, room layouts and planning guidance to turn an idea into a buildable project.",
+    detail:
+      "Bring us your idea, plot details or rough sketch. We help shape clear architectural drafts, room layouts, elevations and material-minded plans ready for discussion with your project team.",
+    image: workInterior,
   },
   {
     slug: "roofing-formwork-and-sheet-installation",
@@ -97,6 +118,16 @@ export const services = [
     image: workInterior,
   },
   {
+    slug: "moulding-ceilings-and-finishes",
+    navTitle: "Moulding & Finishes",
+    icon: Shapes,
+    title: "Moulding, Ceilings & Finishes",
+    text: "Decorative mouldings, ceiling details, wall treatments and finishing work with a clean final line.",
+    detail:
+      "We create and install mouldings, ceiling trims, feature walls, panelling and other architectural details that give homes, offices and hospitality spaces a finished identity.",
+    image: workInterior,
+  },
+  {
     slug: "doors-fixing-and-installation",
     navTitle: "Doors Installation",
     icon: DoorOpen,
@@ -115,6 +146,41 @@ export const gallery = [
   { src: workFurniture, label: "Custom furniture" },
   { src: workCabinets, label: "Kitchen cabinets" },
   { src: workSite, label: "Construction site work" },
+];
+
+export const galleryGroups = [
+  {
+    title: "Construction & site work",
+    text: "Site coordination, roofing, formwork and the practical building work behind a dependable structure.",
+    images: [
+      { src: workSite, label: "Construction site work" },
+      { src: workCarpentry, label: "Roofing carpentry and joinery" },
+    ],
+  },
+  {
+    title: "Interiors & fitted spaces",
+    text: "Ceilings, wall details, fitted storage and finishing choices that make a space feel complete.",
+    images: [
+      { src: workInterior, label: "Interior fittings and ceilings" },
+      { src: workCabinets, label: "Cabinet and storage details" },
+    ],
+  },
+  {
+    title: "Furniture & joinery",
+    text: "Made-to-measure pieces and careful woodwork for homes, offices, shops and hospitality spaces.",
+    images: [
+      { src: workFurniture, label: "Custom furniture" },
+      { src: workCarpentry, label: "Workshop joinery" },
+    ],
+  },
+  {
+    title: "Doors & finishing work",
+    text: "Doors, frames, fittings and final adjustments that bring security, function and a clean finish together.",
+    images: [
+      { src: workDoors, label: "Door fixing and installation" },
+      { src: workInterior, label: "Finished interior details" },
+    ],
+  },
 ];
 
 export const videos = [

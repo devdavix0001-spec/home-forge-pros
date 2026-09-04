@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MessageCircle, Phone, Plus } from "lucide-react";
+import { ArrowRight, CheckCircle2, MessageCircle, Phone, Plus } from "lucide-react";
 import heroImage from "@/assets/hero-construction.jpg";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
@@ -97,7 +97,11 @@ function Index() {
         <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {services.slice(0, 6).map((s, i) => (
             <Reveal key={s.title} delay={i * 70}>
-              <div className="group h-full bg-background p-6 transition-colors hover:bg-primary hover:text-primary-foreground lg:p-7">
+              <Link
+                to="/services/$serviceId"
+                params={{ serviceId: s.slug }}
+                className="group block h-full bg-background p-6 transition-colors hover:bg-primary hover:text-primary-foreground lg:p-7"
+              >
                 <div className="flex items-start justify-between">
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-sm bg-accent/15 text-accent group-hover:bg-accent group-hover:text-accent-foreground">
                     <s.icon className="h-5 w-5" />
@@ -112,7 +116,10 @@ function Index() {
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground group-hover:text-primary-foreground/70">
                   {s.text}
                 </p>
-              </div>
+                <span className="mt-6 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.1em] text-accent transition-[gap] group-hover:gap-3">
+                  View details <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </Link>
             </Reveal>
           ))}
         </div>
@@ -124,6 +131,54 @@ function Index() {
             See all services <ArrowRight className="h-4 w-4" />
           </Link>
         </Reveal>
+      </section>
+
+      <section className="border-y border-border bg-background">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 lg:grid-cols-[0.8fr_1.2fr] lg:px-6 lg:py-24">
+          <Reveal>
+            <p className="section-eyebrow">Why work with us</p>
+            <h2 className="mt-3 max-w-md font-display text-3xl tracking-[-0.04em] text-primary sm:text-4xl">
+              Practical decisions. Stronger results.
+            </h2>
+            <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
+              We bring site experience, fabrication skill and a clear working rhythm to projects
+              that need dependable hands and thoughtful detail.
+            </p>
+          </Reveal>
+          <div className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">
+            {[
+              [
+                "01",
+                "One coordinated team",
+                "Construction, woodwork, fittings and finishes planned around the same brief.",
+              ],
+              [
+                "02",
+                "Built around your space",
+                "Measurements, access, use and budget shape the recommendation from the beginning.",
+              ],
+              [
+                "03",
+                "Clear communication",
+                "We keep the next step, material choice and progress visible as work moves ahead.",
+              ],
+              [
+                "04",
+                "Residential or commercial",
+                "Homes, offices, shops, hospitality spaces, events and building sites all welcome.",
+              ],
+            ].map(([number, title, text], index) => (
+              <Reveal key={title} delay={index * 70}>
+                <div className="h-full bg-muted p-6 lg:p-7">
+                  <CheckCircle2 className="h-5 w-5 text-accent" />
+                  <p className="mt-7 text-xs font-extrabold text-secondary">{number}</p>
+                  <h3 className="mt-2 font-display text-lg text-primary">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="bg-muted">
@@ -165,6 +220,40 @@ function Index() {
               View the full gallery <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-6 lg:py-24">
+        <Reveal>
+          <p className="section-eyebrow">A simple working rhythm</p>
+          <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-[-0.04em] text-primary sm:text-4xl">
+            From an idea to a finished space.
+          </h2>
+        </Reveal>
+        <div className="mt-10 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-3">
+          {[
+            [
+              "01",
+              "Tell us",
+              "Call, WhatsApp or visit with your idea, drawing, measurements or reference photo.",
+            ],
+            [
+              "02",
+              "Plan it",
+              "We clarify the scope, advise on materials and agree on a practical way forward.",
+            ],
+            [
+              "03",
+              "Make it real",
+              "Our team builds, installs, reviews the details and leaves the result ready for use.",
+            ],
+          ].map(([number, title, text]) => (
+            <div key={number} className="bg-background p-6 lg:p-8">
+              <p className="text-sm font-extrabold text-accent">{number}</p>
+              <h3 className="mt-8 font-display text-xl text-primary">{title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
+            </div>
+          ))}
         </div>
       </section>
 

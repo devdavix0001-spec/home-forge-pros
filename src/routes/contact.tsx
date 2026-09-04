@@ -105,6 +105,80 @@ function ContactPage() {
         </Reveal>
       </section>
 
+      <section className="bg-muted">
+        <div className="mx-auto max-w-7xl px-5 py-16 lg:px-6 lg:py-20">
+          <Reveal>
+            <p className="section-eyebrow">Prepare for a useful first conversation</p>
+            <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-[-0.04em] text-primary sm:text-4xl">
+              The more context you share, the better we can guide you.
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              [
+                "01",
+                "Your location",
+                "Tell us where the project is and whether access or timing needs special planning.",
+              ],
+              [
+                "02",
+                "The scope",
+                "Explain what you need built, repaired, fitted, rented or installed.",
+              ],
+              [
+                "03",
+                "Measurements",
+                "Approximate sizes, plans, photos or a quick sketch all help us understand the brief.",
+              ],
+              [
+                "04",
+                "Your timing",
+                "Let us know when you would like to start and any important deadline.",
+              ],
+            ].map(([number, title, text]) => (
+              <div key={number} className="bg-background p-6">
+                <p className="text-xs font-extrabold text-accent">{number}</p>
+                <h3 className="mt-7 font-display text-lg text-primary">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-6 lg:py-24">
+        <Reveal>
+          <p className="section-eyebrow">What happens after you reach us</p>
+          <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-[-0.04em] text-primary sm:text-4xl">
+            A useful conversation becomes a practical next step.
+          </h2>
+        </Reveal>
+        <div className="mt-10 grid gap-8 md:grid-cols-3">
+          {[
+            [
+              "Listen",
+              "We understand the need, the space and the outcome you are trying to achieve.",
+            ],
+            [
+              "Clarify",
+              "We ask the right questions about size, materials, access, timing and budget.",
+            ],
+            [
+              "Move forward",
+              "You leave the conversation knowing what information or site visit is needed next.",
+            ],
+          ].map(([title, text], index) => (
+            <Reveal key={title} delay={index * 80}>
+              <article className="border-t-2 border-secondary pt-5">
+                <p className="text-xs font-extrabold text-accent">0{index + 1}</p>
+                <h3 className="mt-5 font-display text-xl text-primary">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       <CtaBand title="Let's discuss your project" />
     </>
   );

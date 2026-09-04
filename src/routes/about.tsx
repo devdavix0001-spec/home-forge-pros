@@ -141,6 +141,41 @@ function AboutPage() {
         </div>
       </section>
 
+      <section className="bg-muted">
+        <div className="mx-auto max-w-7xl px-5 py-20 lg:px-6 lg:py-24">
+          <Reveal>
+            <p className="section-eyebrow">What we bring together</p>
+            <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-[-0.04em] text-primary sm:text-4xl">
+              The practical sides of a good project.
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {[
+              [
+                "Planning",
+                "We help turn rough ideas, measurements and site needs into a sensible sequence of work.",
+              ],
+              [
+                "Making",
+                "Our workshop and site work cover joinery, furniture, cabinets, roofing, formwork and repairs.",
+              ],
+              [
+                "Finishing",
+                "Interiors, moulding, ceilings, installation and event setups bring the final character to a space.",
+              ],
+            ].map(([title, text], index) => (
+              <Reveal key={title} delay={index * 80}>
+                <article className="border-t-2 border-accent pt-5">
+                  <p className="text-xs font-extrabold text-secondary">0{index + 1}</p>
+                  <h3 className="mt-5 font-display text-xl text-primary">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-5 pb-20 lg:px-6 lg:pb-24">
         <Reveal>
           <h2 className="font-display text-2xl text-primary sm:text-3xl">Our process</h2>
