@@ -87,7 +87,7 @@ function ServiceDetailPage() {
 
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-5 py-16 lg:px-6 lg:py-20">
-          <p className="section-eyebrow text-accent">Our approach</p>
+          <p className="brand-pill">Our approach</p>
           <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-[-0.04em] sm:text-4xl">
             From first conversation to finished work.
           </h2>

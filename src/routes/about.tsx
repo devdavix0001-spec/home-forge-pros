@@ -108,7 +108,7 @@ function AboutPage() {
 
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-5 py-16 lg:px-6 lg:py-20">
-          <p className="section-eyebrow text-accent">The standard we bring</p>
+          <p className="brand-pill">The standard we bring</p>
           <h2 className="mt-3 font-display text-3xl tracking-[-0.04em] sm:text-4xl">How we work</h2>
           <div className="mt-10 grid gap-px overflow-hidden border border-primary-foreground/15 bg-primary-foreground/15 sm:grid-cols-3">
             {values.map(([t, d]) => (

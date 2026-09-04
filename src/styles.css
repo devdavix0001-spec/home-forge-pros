@@ -187,6 +187,21 @@
   color: var(--accent);
 }
 
+@utility brand-pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: white;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 @keyframes reveal-up {
   from {
     opacity: 0;

@@ -141,7 +141,7 @@ function ServicesPage() {
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-5 py-16 lg:px-6 lg:py-20">
           <Reveal>
-            <p className="section-eyebrow text-accent">Once you choose a direction</p>
+            <p className="brand-pill">Once you choose a direction</p>
             <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-[-0.04em] sm:text-4xl">
               The next steps stay clear.
             </h2>

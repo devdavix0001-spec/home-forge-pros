@@ -12,7 +12,7 @@ export function CtaBand({
     <section className="bg-primary text-primary-foreground">
       <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 px-5 py-16 md:flex-row md:items-center md:justify-between lg:px-6 lg:py-20">
         <div>
-          <p className="section-eyebrow text-accent">Let&apos;s work together</p>
+          <p className="brand-pill">Let&apos;s work together</p>
           <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-[-0.04em] sm:text-4xl">
             {title}
           </h2>
@@ -21,7 +21,7 @@ export function CtaBand({
         <div className="flex flex-wrap gap-3">
           <a
             href={`tel:${PHONE_1}`}
-            className="inline-flex items-center gap-2 rounded-sm bg-accent px-5 py-3.5 text-sm font-extrabold text-accent-foreground transition-colors hover:bg-background"
+            className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3.5 text-sm font-extrabold text-white transition-colors hover:bg-background hover:text-primary"
           >
             <Phone className="h-4 w-4" /> Call {PHONE_1}
           </a>

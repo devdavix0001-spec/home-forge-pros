@@ -33,7 +33,7 @@ function Index() {
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <div className="mx-auto grid max-w-7xl items-stretch lg:grid-cols-[0.95fr_1.05fr]">
           <div className="flex flex-col justify-center px-5 py-16 lg:px-12 lg:py-24">
-            <p className="section-eyebrow text-accent">Dodowa Bawaleshie · Ghana</p>
+            <p className="brand-pill">Dodowa Bawaleshie · Ghana</p>
             <h1 className="mt-5 max-w-xl font-display text-4xl leading-[1.02] tracking-[-0.055em] sm:text-5xl lg:text-6xl">
               We shape spaces that work.
             </h1>
@@ -69,12 +69,6 @@ function Index() {
               />
               <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-transparent to-transparent" />
             </div>
-            <div className="absolute bottom-6 left-5 border border-primary-foreground/30 bg-primary/85 p-4 backdrop-blur-sm sm:left-8">
-              <p className="text-3xl font-extrabold text-accent">01</p>
-              <p className="mt-1 max-w-[10rem] text-xs font-bold uppercase tracking-[0.12em] text-primary-foreground/75">
-                Brief to build, made clear
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -94,6 +88,29 @@ function Index() {
             </p>
           </div>
         </Reveal>
+        <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
+          {[services[0], services[2], services[5]].map((service, index) => (
+            <Link
+              key={service.slug}
+              to="/services/$serviceId"
+              params={{ serviceId: service.slug }}
+              className={`group relative overflow-hidden border border-border ${index === 0 ? "col-span-2 aspect-[2/1] md:col-span-4" : "aspect-[4/3]"}`}
+            >
+              <img
+                src={service.image}
+                alt={service.title}
+                loading="lazy"
+                width={1024}
+                height={768}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent" />
+              <span className="absolute bottom-4 left-4 right-4 font-display text-lg text-white sm:text-xl">
+                {service.title}
+              </span>
+            </Link>
+          ))}
+        </div>
         <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {services.slice(0, 6).map((s, i) => (
             <Reveal key={s.title} delay={i * 70}>
