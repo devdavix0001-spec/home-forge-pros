@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Facebook, Music2, PhoneCall } from "lucide-react";
+import { ArrowUpRight, Facebook, Instagram, Music2, PhoneCall } from "lucide-react";
 import logo from "@/assets/samanade-logo.jpg";
-import { navLinks, PHONE_1, PHONE_2, FACEBOOK, TIKTOK, ADDRESS } from "@/lib/site";
+import { navLinks, PHONE_1, PHONE_2, FACEBOOK, TIKTOK, INSTAGRAM, ADDRESS } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -50,6 +50,9 @@ export function SiteFooter() {
           <div className="mt-5 flex gap-3 lg:justify-end">
             <a href={FACEBOOK} target="_blank" rel="noreferrer" aria-label="Facebook">
               <Facebook className="h-5 w-5" />
+            </a>
+            <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram">
+              <Instagram className="h-5 w-5" />
             </a>
             <a href={TIKTOK} target="_blank" rel="noreferrer" aria-label="TikTok">
               <Music2 className="h-5 w-5" />
