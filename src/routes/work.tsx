@@ -1,8 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
 import { gallery } from "@/lib/site";
+
+const GROUP_SIZE = 11;
+
+function chunk<T>(items: T[], size: number): T[][] {
+  const groups: T[][] = [];
+  for (let i = 0; i < items.length; i += size) {
+    groups.push(items.slice(i, i + size));
+  }
+  return groups;
+}
 
 export const Route = createFileRoute("/work")({
   head: () => ({
@@ -19,6 +30,10 @@ export const Route = createFileRoute("/work")({
 });
 
 function WorkPage() {
+  const groups = chunk(gallery, GROUP_SIZE);
+  const [activeGroup, setActiveGroup] = useState(0);
+  const activeItems = groups[activeGroup] ?? [];
+
   return (
     <>
       <PageHero
@@ -39,9 +54,27 @@ function WorkPage() {
             measurements and finishing details together.
           </p>
         </div>
+
+        <div className="mb-8 flex flex-wrap gap-2">
+          {groups.map((_, index) => (
+            <button
+              key={`tab-${index}`}
+              type="button"
+              onClick={() => setActiveGroup(index)}
+              className={`rounded-full px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] transition-colors ${
+                activeGroup === index
+                  ? "bg-accent text-white"
+                  : "border border-border text-muted-foreground hover:border-accent hover:text-accent"
+              }`}
+            >
+              Set {index + 1}
+            </button>
+          ))}
+        </div>
+
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {gallery.map((item, index) => (
-            <Reveal key={item.label} delay={(index % 8) * 60}>
+          {activeItems.map((item, index) => (
+            <Reveal key={item.label} delay={(index % GROUP_SIZE) * 60}>
               <figure className="media-zoom group overflow-hidden border border-border bg-background">
                 <div className="aspect-square">
                   <img
