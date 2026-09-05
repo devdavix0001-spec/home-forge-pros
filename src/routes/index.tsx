@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle2, MessageCircle, Phone, Plus } from "lucide-rea
 import heroImage from "@/assets/hero-construction.jpg";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
-import { services, gallery, PHONE_1, WHATSAPP } from "@/lib/site";
+import { services, featuredWork, PHONE_1, WHATSAPP } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -212,7 +212,7 @@ function Index() {
             </div>
           </Reveal>
           <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
-            {gallery.slice(0, 4).map((g, i) => (
+            {featuredWork.slice(0, 4).map((g, i) => (
               <Reveal key={g.label} delay={i * 80}>
                 <div
                   className={`media-zoom overflow-hidden border border-border ${i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"}`}
