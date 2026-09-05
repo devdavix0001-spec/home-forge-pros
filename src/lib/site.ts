@@ -64,6 +64,7 @@ export const WHATSAPP = "233558729697";
 export const ADDRESS = "Dodowa Bawaleshie (at King Rich Junction), Ghana";
 export const FACEBOOK = "https://facebook.com/anade.samuel.10";
 export const TIKTOK = "https://tiktok.com/@anadesamuel4";
+export const INSTAGRAM = "https://www.instagram.com/orn.samuel/";
 
 // ─────────────────────────────────────────────────────────────────────────
 // WORK PAGE CATEGORIES
