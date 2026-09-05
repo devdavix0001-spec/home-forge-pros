@@ -141,6 +141,18 @@ export const aboutInteriorImage = pickPhoto(56, 17);
 export const contactHeroImage = pickPhoto(58, 18);
 export const contactMidImage = pickPhoto(59, 19);
 
+// Contact page images — pulled from real, distinct categories so this page
+// doesn't reuse the same shot as the homepage/about hero.
+function firstAvailable(...candidates: (string | undefined)[]): string {
+  return (candidates.find((c) => c !== undefined) ?? projectPhotos[0]) as string;
+}
+export const contactRenovationImage = firstAvailable(
+  workGallery.find((g) => g.title === "Leakage & Renovation")?.images[0]?.src
+);
+export const contactInteriorsImage = firstAvailable(
+  workGallery.find((g) => g.title === "Interiors & Events")?.images[0]?.src
+);
+
 export const services = [
   {
     slug: "general-construction",
