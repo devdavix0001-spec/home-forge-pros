@@ -38,9 +38,9 @@ function VideosPage() {
             A closer look at the people, tools and site work behind the finished spaces.
           </p>
         </div>
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {videos.map((video, index) => (
-            <Reveal key={video.title} delay={index * 100}>
+            <Reveal key={video.title} delay={(index % 6) * 90}>
               <article className="overflow-hidden border border-border bg-background">
                 <video
                   className="aspect-video w-full bg-primary object-cover"
@@ -52,7 +52,7 @@ function VideosPage() {
                   Your browser does not support embedded video.
                 </video>
                 <div className="p-6">
-                  <p className="text-xs font-extrabold text-accent">0{index + 1}</p>
+                  <p className="text-xs font-extrabold text-accent">{String(index + 1).padStart(2, "0")}</p>
                   <h2 className="mt-4 font-display text-xl text-primary">{video.title}</h2>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{video.text}</p>
                 </div>
