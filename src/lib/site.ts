@@ -10,8 +10,6 @@ import {
   Wrench,
   Boxes,
 } from "lucide-react";
-import videoSite from "@/assets/video-site.mp4.asset.json";
-import videoWorkshop from "@/assets/video-workshop.mp4.asset.json";
 
 // All project photos supplied by the client, imported from /assets.
 // Filenames follow samandecrd-NN.jpg but are NOT guaranteed to be contiguous —
@@ -264,20 +262,20 @@ export const gallery = projectPhotos.map((src, i) => ({
   label: `Project ${String(i + 1).padStart(2, "0")}`,
 }));
 
-export const videos = [
-  {
-    src: videoSite.url,
-    poster: pickPhoto(51, 20),
-    title: "On the building site",
-    text: "Scaffolding, blockwork and roofing in progress.",
-  },
-  {
-    src: videoWorkshop.url,
-    poster: pickPhoto(60, 21),
-    title: "Inside the workshop",
-    text: "Sanding, assembling and finishing custom woodwork.",
-  },
-];
+// 19 real project video clips, uploaded straight into /public/videos
+// (sm-crd-1.mp4 ... sm-crd-19.mp4). Files in /public are served as-is at a
+// direct URL, so no import is needed — just the plain path string below.
+// Posters cycle through the real categorized project photos so every clip
+// has a distinct thumbnail.
+export const videos = Array.from({ length: 19 }, (_, i) => {
+  const n = i + 1;
+  return {
+    src: `/videos/sm-crd-${n}.mp4`,
+    poster: (featuredWork[i % featuredWork.length]?.src ?? projectPhotos[0]) as string,
+    title: `Work Clip ${String(n).padStart(2, "0")}`,
+    text: "A short look at our work on site and in the workshop.",
+  };
+});
 
 export const navLinks = [
   { label: "Home", to: "/" },
