@@ -10,17 +10,12 @@ import {
   Wrench,
   Boxes,
 } from "lucide-react";
-import workCarpentry from "@/assets/work-carpentry.jpg";
-import workDoors from "@/assets/work-doors.jpg";
-import workInterior from "@/assets/work-interior.jpg";
-import workFurniture from "@/assets/work-furniture.jpg";
-import workCabinets from "@/assets/work-cabinets.jpg";
-import workSite from "@/assets/work-site.jpg";
 import videoSite from "@/assets/video-site.mp4.asset.json";
 import videoWorkshop from "@/assets/video-workshop.mp4.asset.json";
 
 // All project photos supplied by the client (samandecrd-01.jpg ... samandecrd-43.jpg),
-// imported in numeric order so they can be used as the site's real work gallery.
+// imported in numeric order. These are the ONLY images used across the site now —
+// every old stock/placeholder image has been removed.
 const projectPhotoModules = import.meta.glob<string>("../assets/samandecrd-*.jpg", {
   eager: true,
   import: "default",
@@ -32,6 +27,13 @@ export const projectPhotos: string[] = Object.keys(projectPhotoModules)
     return numA - numB;
   })
   .map((key) => projectPhotoModules[key] as string);
+
+// Named picks from the real photo set, used for page heroes and one-off spots.
+export const heroImage = projectPhotos[0] as string;
+export const aboutHeroImage = projectPhotos[16] as string;
+export const aboutInteriorImage = projectPhotos[17] as string;
+export const contactHeroImage = projectPhotos[18] as string;
+export const contactMidImage = projectPhotos[19] as string;
 
 export const PHONE_1 = "0558729697";
 export const PHONE_2 = "0543773955";
@@ -49,7 +51,7 @@ export const services = [
     text: "Residential and commercial building work planned, coordinated and delivered from groundwork to handover.",
     detail:
       "We support new homes, extensions, offices, shops and other commercial spaces with practical site coordination, blockwork, concrete work, roofing, finishes, repairs and clear progress updates.",
-    image: workSite,
+    image: projectPhotos[5],
   },
   {
     slug: "construction-material-rentals-and-fixing",
@@ -59,7 +61,7 @@ export const services = [
     text: "Scaffolding, props, moulds and selected site equipment available for hire, setup and fixing.",
     detail:
       "Hire clean, well-maintained construction materials and site equipment by the day, week or month. We can also help with delivery, positioning, fixing and practical setup around Dodowa and greater Accra.",
-    image: workSite,
+    image: projectPhotos[6],
   },
   {
     slug: "architecture-drafting-and-planning",
@@ -69,7 +71,7 @@ export const services = [
     text: "Practical drawings, room layouts and planning guidance to turn an idea into a buildable project.",
     detail:
       "Bring us your idea, plot details or rough sketch. We help shape clear architectural drafts, room layouts, elevations and material-minded plans ready for discussion with your project team.",
-    image: workInterior,
+    image: projectPhotos[7],
   },
   {
     slug: "roofing-formwork-and-sheet-installation",
@@ -79,7 +81,7 @@ export const services = [
     text: "Roof structures, concrete formwork and roofing sheets installed carefully for a dependable finish.",
     detail:
       "From roof framing and trusses to formwork, fascia details and sheet installation, we help create strong, weather-ready structures with measured alignment and proper site workmanship.",
-    image: workSite,
+    image: projectPhotos[8],
   },
   {
     slug: "leakage-and-general-renovation",
@@ -89,7 +91,7 @@ export const services = [
     text: "Find the source of leaks, repair damage and renew tired residential or commercial spaces.",
     detail:
       "We investigate roof and building leakage, repair affected areas and handle renovation work such as replacements, surface repairs, ceilings, fittings, repainting support and general improvements.",
-    image: workInterior,
+    image: projectPhotos[9],
   },
   {
     slug: "carpentry-works",
@@ -99,7 +101,7 @@ export const services = [
     text: "Roofing carpentry, formwork, framing, joinery and woodwork by experienced hands.",
     detail:
       "Our carpentry service covers roof structures, formwork, framing, doors, repairs and detailed joinery. We work from measurements and reference images to produce useful, well-finished woodwork.",
-    image: workCarpentry,
+    image: projectPhotos[10],
   },
   {
     slug: "furniture-making",
@@ -109,7 +111,7 @@ export const services = [
     text: "Beds, wardrobes, tables, chairs and office furniture made to fit your space and daily use.",
     detail:
       "Share the room, measurements, preferred style and budget. We fabricate practical furniture for homes, offices, shops and hospitality spaces, with attention to proportion, storage and durable finishing.",
-    image: workFurniture,
+    image: projectPhotos[11],
   },
   {
     slug: "cabinet-fabrication-and-installation",
@@ -119,7 +121,7 @@ export const services = [
     text: "Kitchen cabinets, wardrobes, TV units, shelving and storage made, fitted and finished on site.",
     detail:
       "We measure the room, plan useful storage, fabricate the units and install them with careful alignment. Cabinet work can include kitchens, wardrobes, pantry units, TV walls, counters and office storage.",
-    image: workCabinets,
+    image: projectPhotos[12],
   },
   {
     slug: "interior-design-and-events-setups",
@@ -129,7 +131,7 @@ export const services = [
     text: "Interior fittings, ceilings, wall details and event-ready spaces designed around the occasion.",
     detail:
       "We help shape homes, offices, hospitality spaces and event environments with ceilings, panelling, backdrops, display structures, partitions, furniture placement and practical decorative finishes.",
-    image: workInterior,
+    image: projectPhotos[13],
   },
   {
     slug: "moulding-ceilings-and-finishes",
@@ -139,7 +141,7 @@ export const services = [
     text: "Decorative mouldings, ceiling details, wall treatments and finishing work with a clean final line.",
     detail:
       "We create and install mouldings, ceiling trims, feature walls, panelling and other architectural details that give homes, offices and hospitality spaces a finished identity.",
-    image: workInterior,
+    image: projectPhotos[14],
   },
   {
     slug: "doors-fixing-and-installation",
@@ -149,7 +151,7 @@ export const services = [
     text: "Wooden, flush, panel and security doors measured, hung and finished properly.",
     detail:
       "We supply and hang wooden, flush, panel and security doors, including frames, locks, hinges, adjustments and final finishing for residential and commercial spaces.",
-    image: workDoors,
+    image: projectPhotos[15],
   },
 ];
 
@@ -160,16 +162,46 @@ export const gallery = projectPhotos.map((src, i) => ({
   label: `Project ${String(i + 1).padStart(2, "0")}`,
 }));
 
+// ─────────────────────────────────────────────────────────────────────────
+// WORK PAGE CATEGORIES
+// Groups the 43 project photos into tabs named after our actual services.
+// To move a photo to a different category, just move its number from one
+// "photoNumbers" list to another below (numbers match the file names:
+// samandecrd-01.jpg through samandecrd-43.jpg). Every number 1-43 should
+// appear exactly once across all categories.
+// ─────────────────────────────────────────────────────────────────────────
+export const workCategories: { title: string; photoNumbers: number[] }[] = [
+  { title: "General Construction", photoNumbers: [1, 2, 3, 4] },
+  { title: "Material Rentals & Fixing", photoNumbers: [5, 6, 7, 8] },
+  { title: "Architecture Drafting", photoNumbers: [9, 10, 11, 12] },
+  { title: "Roofing & Formwork", photoNumbers: [13, 14, 15, 16] },
+  { title: "Leakage & Renovation", photoNumbers: [17, 18, 19, 20] },
+  { title: "Carpentry Works", photoNumbers: [21, 22, 23, 24] },
+  { title: "Furniture Making", photoNumbers: [25, 26, 27, 28] },
+  { title: "Cabinet Fabrication", photoNumbers: [29, 30, 31, 32] },
+  { title: "Interiors & Events", photoNumbers: [33, 34, 35, 36] },
+  { title: "Moulding & Finishes", photoNumbers: [37, 38, 39] },
+  { title: "Doors Installation", photoNumbers: [40, 41, 42, 43] },
+];
+
+export const workGallery = workCategories.map((category) => ({
+  title: category.title,
+  images: category.photoNumbers.map((n) => ({
+    src: projectPhotos[n - 1] as string,
+    label: `${category.title} ${n}`,
+  })),
+}));
+
 export const videos = [
   {
     src: videoSite.url,
-    poster: workSite,
+    poster: projectPhotos[20],
     title: "On the building site",
     text: "Scaffolding, blockwork and roofing in progress.",
   },
   {
     src: videoWorkshop.url,
-    poster: workCarpentry,
+    poster: projectPhotos[21],
     title: "Inside the workshop",
     text: "Sanding, assembling and finishing custom woodwork.",
   },
