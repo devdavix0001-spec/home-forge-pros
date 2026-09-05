@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, MessageCircle, Phone, Plus } from "lucide-react";
+import { ArrowRight, CheckCircle2, MessageCircle, Phone, Play, Plus } from "lucide-react";
 import heroImage from "@/assets/hero-construction.jpg";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
-import { services, featuredWork, PHONE_1, WHATSAPP } from "@/lib/site";
+import { services, featuredWork, videos, PHONE_1, WHATSAPP } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -238,6 +238,58 @@ function Index() {
             </Link>
           </Reveal>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-6 lg:py-24">
+        <Reveal>
+          <div className="flex items-end justify-between gap-5">
+            <div>
+              <p className="section-eyebrow">On site and in the workshop</p>
+              <h2 className="mt-3 font-display text-3xl tracking-[-0.04em] text-primary sm:text-4xl">
+                See the process in motion.
+              </h2>
+            </div>
+            <Play className="hidden h-8 w-8 text-accent sm:block" />
+          </div>
+        </Reveal>
+        <div className="mt-10 grid gap-6 sm:grid-cols-3">
+          {videos.slice(0, 3).map((video, index) => (
+            <Reveal key={video.title} delay={index * 90}>
+              <Link
+                to="/videos"
+                className="group block overflow-hidden border border-border bg-background"
+              >
+                <div className="media-zoom relative aspect-video overflow-hidden bg-primary">
+                  <img
+                    src={video.poster}
+                    alt={video.title}
+                    loading="lazy"
+                    width={640}
+                    height={360}
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-primary/30">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white">
+                      <Play className="h-5 w-5" fill="currentColor" />
+                    </span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-display text-lg text-primary">{video.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{video.text}</p>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={120}>
+          <Link
+            to="/videos"
+            className="mt-8 inline-flex items-center gap-2 text-sm font-extrabold text-accent hover:gap-3"
+          >
+            Watch all {videos.length} videos <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Reveal>
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20 lg:px-6 lg:py-24">
