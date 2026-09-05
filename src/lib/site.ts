@@ -19,10 +19,13 @@ import videoWorkshop from "@/assets/video-workshop.mp4.asset.json";
 // (50-60, 70-80, 90-100, ...) with unused numbers left as spacing between
 // categories. Never assume array-index === number - 1 anywhere in this file;
 // always look photos up by number via `projectPhotosByNumber` below.
-const projectPhotoModules = import.meta.glob<string>("../assets/samandecrd-*.jpg", {
-  eager: true,
-  import: "default",
-});
+const projectPhotoModules = import.meta.glob<string>(
+  "../assets/samandecrd-*.{jpg,jpeg,png,JPG,JPEG,PNG}",
+  {
+    eager: true,
+    import: "default",
+  }
+);
 
 const sortedPhotoKeys = Object.keys(projectPhotoModules).sort((a, b) => {
   const numA = parseInt(a.match(/(\d+)/)?.[1] ?? "0", 10);
