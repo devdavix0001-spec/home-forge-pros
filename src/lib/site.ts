@@ -234,6 +234,13 @@ export const workGallery = workCategories.map((category) => ({
     })),
 }));
 
+// Flattened list of every category's photos, in category order, following
+// the new 50/70/90... numbering scheme. Use this (not `gallery`) anywhere
+// that wants a general-purpose preview of recent work — e.g. the homepage
+// "Selected work" section — so it stays in sync with the Work page and
+// only ever shows photos that actually exist.
+export const featuredWork = workGallery.flatMap((group) => group.images);
+
 export const videos = [
   {
     src: videoSite.url,
