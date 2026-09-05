@@ -3,17 +3,7 @@ import { useState } from "react";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
-import { gallery } from "@/lib/site";
-
-const GROUP_SIZE = 11;
-
-function chunk<T>(items: T[], size: number): T[][] {
-  const groups: T[][] = [];
-  for (let i = 0; i < items.length; i += size) {
-    groups.push(items.slice(i, i + size));
-  }
-  return groups;
-}
+import { workGallery } from "@/lib/site";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
@@ -30,9 +20,8 @@ export const Route = createFileRoute("/work")({
 });
 
 function WorkPage() {
-  const groups = chunk(gallery, GROUP_SIZE);
-  const [activeGroup, setActiveGroup] = useState(0);
-  const activeItems = groups[activeGroup] ?? [];
+  const [activeCategory, setActiveCategory] = useState(0);
+  const category = workGallery[activeCategory];
 
   return (
     <>
@@ -40,7 +29,7 @@ function WorkPage() {
         eyebrow="Our work"
         title="Made for real homes and working sites"
         subtitle="A look at the joinery, fittings, interiors and building work we deliver for homes, offices and commercial projects around Dodowa."
-        image={gallery[0].src}
+        image={workGallery[0].images[0].src}
       />
 
       <section className="mx-auto max-w-7xl px-5 py-20 lg:px-6 lg:py-24">
@@ -50,31 +39,30 @@ function WorkPage() {
             Practical work, carefully finished.
           </h2>
           <p className="text-base leading-relaxed text-muted-foreground">
-            Each project starts with the way a space needs to work, then we bring the materials,
-            measurements and finishing details together.
+            Browse by service — each category shows photos from that part of our work.
           </p>
         </div>
 
-        <div className="mb-8 flex flex-wrap gap-2">
-          {groups.map((_, index) => (
+        <div className="mb-10 flex gap-6 overflow-x-auto border-b border-border">
+          {workGallery.map((group, index) => (
             <button
-              key={`tab-${index}`}
+              key={group.title}
               type="button"
-              onClick={() => setActiveGroup(index)}
-              className={`rounded-full px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] transition-colors ${
-                activeGroup === index
-                  ? "bg-accent text-white"
-                  : "border border-border text-muted-foreground hover:border-accent hover:text-accent"
+              onClick={() => setActiveCategory(index)}
+              className={`shrink-0 whitespace-nowrap border-b-2 px-1 pb-3 text-sm font-extrabold transition-colors ${
+                activeCategory === index
+                  ? "border-accent text-primary"
+                  : "border-transparent text-muted-foreground hover:text-primary"
               }`}
             >
-              Set {index + 1}
+              {group.title}
             </button>
           ))}
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {activeItems.map((item, index) => (
-            <Reveal key={item.label} delay={(index % GROUP_SIZE) * 60}>
+          {category.images.map((item, index) => (
+            <Reveal key={item.label} delay={index * 60}>
               <figure className="media-zoom group overflow-hidden border border-border bg-background">
                 <div className="aspect-square">
                   <img
