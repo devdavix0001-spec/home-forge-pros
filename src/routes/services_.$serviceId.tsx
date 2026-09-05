@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
-import { services } from "@/lib/site";
+import { services, workGallery } from "@/lib/site";
 
 export const Route = createFileRoute("/services/$serviceId")({
   head: ({ params }) => {
@@ -40,6 +40,10 @@ function ServiceDetailPage() {
   }
 
   const relatedServices = services.filter((item) => item.slug !== service.slug).slice(0, 3);
+
+  // Match this service to its photo set in workGallery by title — both
+  // arrays use the same category names (e.g. "General Construction").
+  const servicePhotos = workGallery.find((group) => group.title === service.navTitle)?.images ?? [];
 
   return (
     <>
@@ -84,6 +88,45 @@ function ServiceDetailPage() {
           </div>
         </Reveal>
       </section>
+
+      {servicePhotos.length > 0 && (
+        <section className="bg-muted">
+          <div className="mx-auto max-w-7xl px-5 py-16 lg:px-6 lg:py-20">
+            <div className="flex items-end justify-between gap-5">
+              <div>
+                <p className="section-eyebrow">Photos from this work</p>
+                <h2 className="mt-3 font-display text-3xl tracking-[-0.04em] text-primary sm:text-4xl">
+                  {service.title} in the field.
+                </h2>
+              </div>
+              <Link
+                to="/work"
+                className="hidden items-center gap-2 text-sm font-extrabold text-accent sm:inline-flex"
+              >
+                See all work <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {servicePhotos.map((item, index) => (
+                <Reveal key={item.label} delay={index * 60}>
+                  <figure className="media-zoom group overflow-hidden border border-border bg-background">
+                    <div className="aspect-square">
+                      <img
+                        src={item.src}
+                        alt={item.label}
+                        loading="lazy"
+                        width={800}
+                        height={800}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
+                  </figure>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-5 py-16 lg:px-6 lg:py-20">
