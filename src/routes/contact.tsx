@@ -3,8 +3,14 @@ import { Clock3, MapPin, MessageCircle, Phone } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
-import { ADDRESS, PHONE_1, PHONE_2, WHATSAPP } from "@/lib/site";
-import workSite from "@/assets/work-site.jpg";
+import {
+  ADDRESS,
+  PHONE_1,
+  PHONE_2,
+  WHATSAPP,
+  contactRenovationImage,
+  contactInteriorsImage,
+} from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -27,7 +33,7 @@ function ContactPage() {
         eyebrow="Start a conversation"
         title="Tell us what you want to build"
         subtitle="Share your measurements, photos or a rough idea. We will help you choose the right approach and prepare a clear quote."
-        image={workSite}
+        image={contactRenovationImage}
       />
 
       <section className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-[0.9fr_1.1fr] lg:px-6 lg:py-24">
@@ -87,8 +93,8 @@ function ContactPage() {
         <Reveal delay={120}>
           <div className="overflow-hidden border border-border bg-background">
             <img
-              src={workSite}
-              alt="Construction work in progress"
+              src={contactInteriorsImage}
+              alt="Interior fittings and finishing work"
               width={1024}
               height={768}
               className="h-64 w-full object-cover"
