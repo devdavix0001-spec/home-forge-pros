@@ -171,7 +171,7 @@ export const gallery = projectPhotos.map((src, i) => ({
 // appear exactly once across all categories.
 // ─────────────────────────────────────────────────────────────────────────
 export const workCategories: { title: string; photoNumbers: number[] }[] = [
-  { title: "General Construction", photoNumbers: [1, 2, 3, 4] },
+  { title: "General Construction", photoNumbers: [51, 52, 53, 54, 55, 56, 57, 58, 59, 60] },
   { title: "Material Rentals & Fixing", photoNumbers: [5, 6, 7, 8] },
   { title: "Architecture Drafting", photoNumbers: [9, 10, 11, 12] },
   { title: "Roofing & Formwork", photoNumbers: [13, 14, 15, 16] },
