@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import logo from "../assets/samanade-logo.jpg";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -79,14 +80,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Samanade C.R.D Enterprise | Construction & Design, Dodowa Ghana" },
+      {
+        name: "description",
+        content:
+          "Residential and commercial construction, architecture drafting, interiors, carpentry, moulding, repairs and equipment rentals in Dodowa Bawaleshie, Ghana.",
+      },
+      { name: "author", content: "Samanade C.R.D Enterprise" },
+      { property: "og:site_name", content: "Samanade C.R.D Enterprise" },
+      { property: "og:title", content: "Samanade C.R.D Enterprise | Construction & Design" },
+      {
+        property: "og:description",
+        content:
+          "A practical construction and design partner for homes, workplaces and commercial spaces in Dodowa, Ghana.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: logo },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
