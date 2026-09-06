@@ -8,17 +8,17 @@ import { services, featuredWork, videos, PHONE_1, WHATSAPP } from "@/lib/site";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Samanade C.R.D Enterprise | Construction & Design, Dodowa" },
+      { title: "Samanade C.R.D Enterprise | Construction, Architecture & Fabrication, Dodowa" },
       {
         name: "description",
         content:
-          "Residential and commercial construction, architecture drafting, interiors, carpentry, moulding, repairs and equipment rentals in Dodowa Bawaleshie, Ghana.",
+          "Samanade C.R.D Enterprise delivers construction and building works, architectural and technical drawings, custom furniture fabrication, kitchen and wardrobe cabinetry, interior fittings, installation, renovation and site equipment rentals in Dodowa Bawaleshie, Ghana. Your dreams, our blueprint.",
       },
-      { property: "og:title", content: "Samanade C.R.D Enterprise | Construction & Design" },
+      { property: "og:title", content: "Samanade C.R.D Enterprise | Building Ideas. Creating Spaces. Delivering Excellence." },
       {
         property: "og:description",
         content:
-          "A practical construction and design partner for homes, workplaces and commercial spaces in Dodowa, Ghana.",
+          "A complete construction, architectural drawing, furniture fabrication, cabinet-making and installation service for residential, commercial, office and hospitality projects in Dodowa, Ghana.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,11 +35,17 @@ function Index() {
           <div className="flex flex-col justify-center px-5 py-16 lg:px-12 lg:py-24">
             <p className="brand-pill">Dodowa Bawaleshie · Ghana</p>
             <h1 className="mt-5 max-w-xl font-display text-4xl leading-[1.02] tracking-[-0.055em] sm:text-5xl lg:text-6xl">
-              We shape spaces that work.
+              Welcome to Samanade C.R.D Enterprise.
             </h1>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-primary-foreground/70 lg:text-lg">
-              Construction, architecture drafting, interiors and crafted finishes for residential
-              and commercial projects. One practical team from first idea to final handover.
+              Samanade C.R.D Enterprise is a professional construction, architectural drawing,
+              furniture fabrication, cabinet-making and installation service dedicated to
+              transforming ideas into quality, functional and lasting spaces.
+            </p>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-primary-foreground/60 lg:text-base">
+              From concept and architectural drawings to construction, custom furniture, cabinetry
+              and final installation, we provide a complete and coordinated service designed to
+              make every project efficient, reliable and professionally executed.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a
@@ -57,6 +63,9 @@ function Index() {
                 <MessageCircle className="h-4 w-4" /> WhatsApp Us
               </a>
             </div>
+            <p className="mt-8 text-xs font-extrabold uppercase tracking-[0.2em] text-accent">
+              Your dreams, our blueprint.
+            </p>
           </div>
           <div className="relative min-h-[25rem] lg:min-h-[39rem]">
             <div className="media-zoom absolute inset-0 overflow-hidden">
@@ -83,8 +92,10 @@ function Index() {
               </h2>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
-              We combine planning, construction, fabrication and finishing so the details stay
-              connected.
+              We provide construction and building services, architectural and technical drawings,
+              construction material rentals, custom furniture making, cabinet fabrication, interior
+              fittings and professional installation — one coordinated service from concept to
+              handover.
             </p>
           </div>
         </Reveal>
@@ -158,8 +169,11 @@ function Index() {
               Practical decisions. Stronger results.
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
-              We bring site experience, fabrication skill and a clear working rhythm to projects
-              that need dependable hands and thoughtful detail.
+              Our commitment is built on quality workmanship, attention to detail, durability,
+              safety, professionalism and customer satisfaction. Whether it is a residential,
+              commercial, office, hospitality or renovation project, we work closely with our
+              clients to understand their vision, provide effective solutions and deliver results
+              that add lasting value.
             </p>
           </Reveal>
           <div className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">
@@ -167,22 +181,22 @@ function Index() {
               [
                 "01",
                 "One coordinated team",
-                "Construction, woodwork, fittings and finishes planned around the same brief.",
+                "Architectural drawings, construction, joinery, cabinetry, finishes and rentals planned around the same brief, from a single accountable team.",
               ],
               [
                 "02",
                 "Built around your space",
-                "Measurements, access, use and budget shape the recommendation from the beginning.",
+                "Measurements, access, use and budget shape every recommendation from the very first conversation to the final installation.",
               ],
               [
                 "03",
                 "Clear communication",
-                "We keep the next step, material choice and progress visible as work moves ahead.",
+                "We keep the next step, material choice, pricing and progress visible throughout, so there are no surprises along the way.",
               ],
               [
                 "04",
                 "Residential or commercial",
-                "Homes, offices, shops, hospitality spaces, events and building sites all welcome.",
+                "Homes, offices, shops, hospitality spaces, renovations and building sites — we bring the same standard of care to every project.",
               ],
             ].map(([number, title, text], index) => (
               <Reveal key={title} delay={index * 70}>
@@ -298,23 +312,27 @@ function Index() {
           <h2 className="mt-3 max-w-2xl font-display text-3xl tracking-[-0.04em] text-primary sm:text-4xl">
             From an idea to a finished space.
           </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            We don't just build or fabricate — we create practical solutions, beautiful spaces and
+            quality results designed to stand the test of time.
+          </p>
         </Reveal>
         <div className="mt-10 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-3">
           {[
             [
               "01",
               "Tell us",
-              "Call, WhatsApp or visit with your idea, drawing, measurements or reference photo.",
+              "Call, WhatsApp or visit our workshop with your idea, drawing, measurements or reference photo.",
             ],
             [
               "02",
               "Plan it",
-              "We clarify the scope, advise on materials and agree on a practical way forward.",
+              "We clarify the scope, prepare drawings where needed, advise on materials and agree on a practical, clearly priced way forward.",
             ],
             [
               "03",
               "Make it real",
-              "Our team builds, installs, reviews the details and leaves the result ready for use.",
+              "Our team builds, fabricates, installs, reviews every detail and leaves the result ready for use — on time and to a professional standard.",
             ],
           ].map(([number, title, text]) => (
             <div key={number} className="bg-background p-6 lg:p-8">
