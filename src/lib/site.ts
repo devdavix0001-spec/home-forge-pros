@@ -90,7 +90,7 @@ export const INSTAGRAM = "https://www.instagram.com/orn.samuel/";
 // ─────────────────────────────────────────────────────────────────────────
 export const workCategories: { title: string; photoNumbers: number[] }[] = [
   { title: "General Construction", photoNumbers: [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60] },
-  { title: "Material Rentals & Fixing", photoNumbers: [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80] },
+  { title: "Material Rentals & Fixing", photoNumbers: [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85] },
   { title: "Architecture Drafting", photoNumbers: [90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100] },
   { title: "Roofing & Formwork", photoNumbers: [110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120] },
   { title: "Leakage & Renovation", photoNumbers: [130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140] },
