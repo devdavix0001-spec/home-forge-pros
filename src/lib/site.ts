@@ -93,7 +93,7 @@ export const workCategories: { title: string; photoNumbers: number[] }[] = [
   { title: "Material Rentals & Fixing", photoNumbers: [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85] },
   { title: "Architecture Drafting", photoNumbers: [90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100] },
   { title: "Roofing & Formwork", photoNumbers: [110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120] },
-  { title: "Leakage & Renovation", photoNumbers: [141, 142, 143, 144, 145, 146, 147, 148, 149] },
+  { title: "Leakage & Renovation", photoNumbers: [161, 162, 163, 164, 165, 166, 167, 301, 302, 303, 304, 305, 306, 307, 308,] },
   { title: "Carpentry Works", photoNumbers: [150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160] },
   { title: "Furniture Making", photoNumbers: [170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180] },
   { title: "Cabinet Fabrication", photoNumbers: [190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200] },
