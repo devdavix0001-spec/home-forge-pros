@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, MessageCircle, Phone, Play, Plus } from "lucide-react";
-import heroImage from "@/assetssamandecrd-60.jpg";
+import heroImage from "@/assets/samandecrd-60.jpg";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
 import { services, featuredWork, videos, PHONE_1, WHATSAPP } from "@/lib/site";
