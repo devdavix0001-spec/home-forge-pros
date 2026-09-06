@@ -3,8 +3,8 @@ import { CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
-import workInterior from "@/assets/samandecrd-60.jpeg";
-import workSite from "@/assets/samandecrd-59.jpeg";
+import workInterior from "@/assets/samandecrd-60.jpg";
+import workSite from "@/assets/samandecrd-59.jpg";
 import { ADDRESS } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
