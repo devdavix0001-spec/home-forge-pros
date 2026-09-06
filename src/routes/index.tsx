@@ -33,7 +33,7 @@ function Index() {
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <div className="mx-auto grid max-w-7xl items-stretch lg:grid-cols-[0.95fr_1.05fr]">
           <div className="flex flex-col justify-center px-5 py-16 lg:px-12 lg:py-24">
-            <p className="brand-pill">Dodowa Bawaleshie · Ghana</p>
+            <p className="brand-pill">Building Ideas. Creating Spaces. Delivering Excellence.</p>
             <h1 className="mt-5 max-w-xl font-display text-4xl leading-[1.02] tracking-[-0.055em] sm:text-5xl lg:text-6xl">
               Welcome to Samanade C.R.D Enterprise.
             </h1>
@@ -82,6 +82,31 @@ function Index() {
         </div>
       </section>
 
+      <section className="bg-primary text-primary-foreground">
+        <div className="mx-auto max-w-7xl px-5 py-16 lg:px-6 lg:py-20">
+          <div className="grid gap-10 lg:grid-cols-2">
+            <Reveal>
+              <p className="brand-pill">Our vision</p>
+              <p className="mt-4 max-w-md text-base leading-relaxed opacity-75">
+                To become a trusted and recognized provider of professional construction, design,
+                fabrication, rental and installation solutions through quality, innovation and
+                exceptional craftsmanship.
+              </p>
+            </Reveal>
+            <Reveal delay={100}>
+              <p className="brand-pill">Our promise</p>
+              <p className="mt-4 max-w-md text-base leading-relaxed opacity-75">
+                We don't just build or fabricate — we create practical solutions, beautiful spaces
+                and quality results designed to stand the test of time.
+              </p>
+              <p className="mt-4 font-display text-xl tracking-[-0.02em]">
+                Your dreams, our blueprint.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-5 py-20 lg:px-6 lg:py-28">
         <Reveal>
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
@@ -99,31 +124,8 @@ function Index() {
             </p>
           </div>
         </Reveal>
-        <div className="mt-10 grid grid-cols-2 gap-3">
-          {[services[0], services[2], services[5]].map((service, index) => (
-            <Link
-              key={service.slug}
-              to="/services/$serviceId"
-              params={{ serviceId: service.slug }}
-              className={`group relative overflow-hidden border border-border ${index === 0 ? "col-span-2 aspect-[2/1]" : "aspect-[4/3]"}`}
-            >
-              <img
-                src={service.image}
-                alt={service.title}
-                loading="lazy"
-                width={1024}
-                height={768}
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/10 to-transparent" />
-              <span className="absolute bottom-4 left-4 right-4 font-display text-lg text-white sm:text-xl">
-                {service.title}
-              </span>
-            </Link>
-          ))}
-        </div>
         <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-          {services.slice(0, 6).map((s, i) => (
+          {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 70}>
               <Link
                 to="/services/$serviceId"
@@ -347,4 +349,4 @@ function Index() {
       <CtaBand />
     </>
   );
-}
+                }
