@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type ChangeEvent, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   deleteGalleryImage,
@@ -16,6 +16,7 @@ function GalleryManager() {
   const [activeId, setActiveId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [files, setFiles] = useState<File[]>([]);
+  const [previews, setPreviews] = useState<string[]>([]);
   const [altText, setAltText] = useState("");
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -27,16 +28,30 @@ function GalleryManager() {
         setCategories(data);
         setActiveId((current) => current ?? data[0]?.id ?? null);
       })
-      .catch(() => setError("Couldn't load the gallery."))
+      .catch(() => setError("Couldn't load the gallery. Refresh to try again."))
       .finally(() => setLoading(false));
   }
 
   useEffect(load, []);
 
+  // Revoke object URLs when the file selection changes or the component unmounts,
+  // so preview thumbnails don't leak memory.
+  useEffect(() => {
+    return () => previews.forEach((url) => URL.revokeObjectURL(url));
+  }, [previews]);
+
   const active = categories.find((c) => c.id === activeId) ?? null;
 
+  const totalPhotos = useMemo(
+    () => categories.reduce((sum, c) => sum + c.images.length, 0),
+    [categories],
+  );
+
   function handleFiles(event: ChangeEvent<HTMLInputElement>) {
-    setFiles(Array.from(event.target.files ?? []));
+    const selected = Array.from(event.target.files ?? []);
+    setFiles(selected);
+    previews.forEach((url) => URL.revokeObjectURL(url));
+    setPreviews(selected.map((file) => URL.createObjectURL(file)));
   }
 
   async function handleUpload(event: FormEvent) {
@@ -49,7 +64,9 @@ function GalleryManager() {
       setCategories((prev) =>
         prev.map((c) => (c.id === active.id ? { ...c, images: [...c.images, ...created] } : c)),
       );
+      previews.forEach((url) => URL.revokeObjectURL(url));
       setFiles([]);
+      setPreviews([]);
       setAltText("");
       (event.target as HTMLFormElement).reset();
     } catch {
@@ -61,7 +78,7 @@ function GalleryManager() {
 
   async function handleDelete(imageId: number) {
     if (!active) return;
-    if (!confirm("Delete this photo?")) return;
+    if (!confirm("Delete this photo? This can't be undone.")) return;
     try {
       await deleteGalleryImage(imageId);
       setCategories((prev) =>
@@ -82,17 +99,21 @@ function GalleryManager() {
         <p className="admin-eyebrow">Gallery</p>
         <h1>Photos by category</h1>
         <p className="admin-page-sub">
-          Uploads appear on the Work page and homepage automatically — no redeploy needed.
+          {totalPhotos} photo{totalPhotos === 1 ? "" : "s"} across {categories.length} categor
+          {categories.length === 1 ? "y" : "ies"}. Uploads appear on the Work page and homepage
+          automatically — no redeploy needed.
         </p>
       </header>
 
       {error && <p className="admin-alert">{error}</p>}
 
-      <div className="admin-tabs">
+      <div className="admin-tabs" role="tablist" aria-label="Gallery categories">
         {categories.map((cat) => (
           <button
             key={cat.id}
             type="button"
+            role="tab"
+            aria-selected={cat.id === activeId}
             className={cat.id === activeId ? "admin-tab admin-tab-active" : "admin-tab"}
             onClick={() => setActiveId(cat.id)}
           >
@@ -114,6 +135,14 @@ function GalleryManager() {
                 onChange={handleFiles}
                 required
               />
+              <span className="admin-file-hint">JPEG, PNG or WebP. Up to 8MB each.</span>
+              {previews.length > 0 && (
+                <span className="admin-preview-strip">
+                  {previews.map((src, i) => (
+                    <img key={src} src={src} alt="" className="admin-preview-thumb" />
+                  ))}
+                </span>
+              )}
             </label>
             <label className="admin-field">
               <span>Alt text / caption (applied to this batch)</span>
@@ -129,7 +158,9 @@ function GalleryManager() {
               type="submit"
               disabled={uploading || files.length === 0}
             >
-              {uploading ? "Uploading…" : `Upload to ${active.title}`}
+              {uploading
+                ? "Uploading…"
+                : `Upload ${files.length > 0 ? files.length : ""} to ${active.title}`.trim()}
             </button>
           </form>
 
@@ -147,7 +178,9 @@ function GalleryManager() {
               </figure>
             ))}
             {active.images.length === 0 && (
-              <p className="admin-muted">No photos in this category yet.</p>
+              <div className="admin-empty-state">
+                No photos in {active.title} yet. Add your first batch above.
+              </div>
             )}
           </div>
         </>
