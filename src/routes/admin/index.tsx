@@ -47,6 +47,17 @@ function Dashboard() {
 
       {loadError && <p className="admin-alert">{loadError}</p>}
 
+      {/* Quick actions first — the two things an admin comes here to do,
+          surfaced above the fold on mobile */}
+      <div className="admin-quick-links">
+        <Link to="/admin/gallery" className="admin-btn admin-btn-primary">
+          Manage gallery photos
+        </Link>
+        <Link to="/admin/services" className="admin-btn admin-btn-outline">
+          Manage service photos
+        </Link>
+      </div>
+
       <div className="admin-stat-row">
         <div className="admin-stat">
           <p className="admin-stat-number">{photoCount ?? "—"}</p>
@@ -64,15 +75,6 @@ function Dashboard() {
               : "Services missing a photo"}
           </p>
         </div>
-      </div>
-
-      <div className="admin-quick-links">
-        <Link to="/admin/gallery" className="admin-btn admin-btn-primary">
-          Manage gallery photos
-        </Link>
-        <Link to="/admin/services" className="admin-btn admin-btn-outline">
-          Manage service photos
-        </Link>
       </div>
 
       <div className="admin-dashboard-section">
