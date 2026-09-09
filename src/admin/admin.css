@@ -1215,6 +1215,275 @@
   }
 }
 
+
+
+
+
+/* ============================================================
+   ADMIN BOTTOM NAV
+   ============================================================ */
+
+.admin-bottom-nav {
+  display: none;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 720px) {
+
+  .admin-shell {
+    display: block;
+    min-height: 100dvh;
+  }
+
+  /* ----------------------------------------------------------
+     Hide desktop sidebar
+     ---------------------------------------------------------- */
+
+  .admin-sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 18px;
+
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+
+    background:
+      color-mix(
+        in oklab,
+        var(--card) 94%,
+        transparent
+      );
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .admin-sidebar .admin-nav,
+  .admin-sidebar .admin-sign-out {
+    display: none;
+  }
+
+  .admin-brand {
+    padding: 0;
+  }
+
+  /* ----------------------------------------------------------
+     Content
+     ---------------------------------------------------------- */
+
+  .admin-content {
+    width: 100%;
+    max-width: none;
+
+    /*
+     * Extra bottom space is VERY important.
+     * Otherwise the bottom nav covers your content.
+     */
+    padding:
+      24px
+      20px
+      calc(100px + env(safe-area-inset-bottom));
+  }
+
+
+  /* ==========================================================
+     BOTTOM NAV
+     ========================================================== */
+
+  .admin-bottom-nav {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 100;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    height:
+      calc(
+        72px + env(safe-area-inset-bottom)
+      );
+
+    padding:
+      7px
+      8px
+      calc(
+        7px + env(safe-area-inset-bottom)
+      );
+
+    background:
+      color-mix(
+        in oklab,
+        var(--card) 94%,
+        transparent
+      );
+
+    border-top: 1px solid var(--border);
+
+    box-shadow:
+      0 -12px 35px -25px
+      color-mix(
+        in oklab,
+        var(--foreground) 30%,
+        transparent
+      );
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+
+  /* ----------------------------------------------------------
+     Bottom nav item
+     ---------------------------------------------------------- */
+
+  .admin-bottom-tab {
+    position: relative;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 7px 4px;
+
+    border-radius: var(--radius-lg);
+
+    color: var(--muted-foreground);
+
+    text-decoration: none;
+
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+
+    transition:
+      color 0.18s ease,
+      background-color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+
+  /* ----------------------------------------------------------
+     SVG
+     ---------------------------------------------------------- */
+
+  .admin-bottom-tab svg {
+    display: block;
+
+    width: 22px;
+    height: 22px;
+
+    flex: none;
+  }
+
+
+  /* ----------------------------------------------------------
+     Active
+     ---------------------------------------------------------- */
+
+  .admin-bottom-tab.is-active {
+    color: var(--primary);
+
+    background:
+      color-mix(
+        in oklab,
+        var(--primary) 8%,
+        transparent
+      );
+  }
+
+  .admin-bottom-tab.is-active::before {
+    content: "";
+
+    position: absolute;
+
+    top: -7px;
+    left: 50%;
+
+    width: 24px;
+    height: 3px;
+
+    transform: translateX(-50%);
+
+    border-radius:
+      0 0 999px 999px;
+
+    background: var(--primary);
+  }
+
+
+  /* ----------------------------------------------------------
+     Touch
+     ---------------------------------------------------------- */
+
+  .admin-bottom-tab:active {
+    transform: scale(0.95);
+  }
+}
+
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+  .admin-content {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .admin-bottom-nav {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .admin-bottom-tab {
+    font-size: 10px;
+  }
+
+  .admin-bottom-tab svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+/* ============================================================
+   DESKTOP
+   ============================================================ */
+
+@media (min-width: 721px) {
+
+  .admin-bottom-nav {
+    display: none !important;
+  }
+}
+
+
+
 /* ============================================================
    ACCESSIBILITY
    ============================================================ */
