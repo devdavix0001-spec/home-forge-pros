@@ -4,24 +4,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ============================================================
+   DESIGN SYSTEM
+   ============================================================ */
+
 @theme {
   --font-display: "Sora", system-ui, sans-serif;
   --font-sans: "Manrope", system-ui, sans-serif;
 }
-
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -31,31 +21,41 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
+
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -64,36 +64,73 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --shadow-plank: var(--shadow-plank);
 }
 
+/* ============================================================
+   LIGHT THEME
+   ============================================================ */
+
 :root {
-  --radius: 0.25rem;
-  --background: oklch(0.975 0.009 88);
+  --radius: 0.375rem;
+
+  /* Warm limestone background */
+  --background: oklch(0.955 0.012 88);
   --foreground: oklch(0.22 0.015 70);
+
+  /* Surfaces */
   --card: oklch(0.995 0.004 88);
   --card-foreground: oklch(0.22 0.015 70);
+
   --popover: oklch(0.995 0.004 88);
   --popover-foreground: oklch(0.22 0.015 70);
+
+  /* Steel blue primary */
   --primary: oklch(0.34 0.105 155);
   --primary-foreground: oklch(0.975 0.009 88);
+
+  /* Deep blue secondary */
   --secondary: oklch(0.39 0.18 285);
   --secondary-foreground: oklch(0.975 0.009 88);
+
+  /* Muted */
   --muted: oklch(0.935 0.014 88);
   --muted-foreground: oklch(0.47 0.018 75);
+
+  /* Rust accent */
   --accent: oklch(0.58 0.22 28);
   --accent-foreground: oklch(0.99 0.003 90);
+
+  /* Destructive */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
+
+  /* Borders / inputs */
   --border: oklch(0.86 0.018 88);
   --input: oklch(0.86 0.018 88);
   --ring: oklch(0.39 0.18 285);
-  --shadow-plank: 0 16px 34px -24px oklch(0.22 0.015 70 / 0.55);
-  --gradient-frame: linear-gradient(135deg, oklch(0.34 0.105 155), oklch(0.39 0.18 285));
+
+  /* Shadows */
+  --shadow-plank:
+    0 16px 34px -24px oklch(0.22 0.015 70 / 0.55);
+
+  /* Brand gradient */
+  --gradient-frame:
+    linear-gradient(
+      135deg,
+      oklch(0.34 0.105 155),
+      oklch(0.39 0.18 285)
+    );
+
+  /* Charts */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Sidebar */
   --sidebar: oklch(0.984 0.003 247.858);
   --sidebar-foreground: oklch(0.129 0.042 264.695);
   --sidebar-primary: oklch(0.208 0.042 265.755);
@@ -104,31 +141,45 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
 
+/* ============================================================
+   DARK THEME
+   ============================================================ */
+
 .dark {
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
+
   --card: oklch(0.208 0.042 265.755);
   --card-foreground: oklch(0.984 0.003 247.858);
+
   --popover: oklch(0.208 0.042 265.755);
   --popover-foreground: oklch(0.984 0.003 247.858);
+
   --primary: oklch(0.929 0.013 255.508);
   --primary-foreground: oklch(0.208 0.042 265.755);
+
   --secondary: oklch(0.279 0.041 260.031);
   --secondary-foreground: oklch(0.984 0.003 247.858);
+
   --muted: oklch(0.279 0.041 260.031);
   --muted-foreground: oklch(0.704 0.04 256.788);
+
   --accent: oklch(0.279 0.041 260.031);
   --accent-foreground: oklch(0.984 0.003 247.858);
+
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.984 0.003 247.858);
+
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.551 0.027 264.364);
+
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
+
   --sidebar: oklch(0.208 0.042 265.755);
   --sidebar-foreground: oklch(0.984 0.003 247.858);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -139,16 +190,33 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+/* ============================================================
+   BASE
+   ============================================================ */
+
 @layer base {
   * {
     border-color: var(--color-border);
   }
 
+  html {
+    font-family: var(--font-sans);
+  }
+
   body {
+    margin: 0;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
   }
 
   ::selection {
@@ -157,9 +225,9 @@
   }
 }
 
-@theme inline {
-  --shadow-plank: var(--shadow-plank);
-}
+/* ============================================================
+   SHARED UTILITIES
+   ============================================================ */
 
 @utility surface-card {
   background-color: var(--card);
@@ -202,11 +270,16 @@
   text-transform: uppercase;
 }
 
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
 @keyframes reveal-up {
   from {
     opacity: 0;
     transform: translateY(28px);
   }
+
   to {
     opacity: 1;
     transform: none;
@@ -218,6 +291,7 @@
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -260,16 +334,516 @@
 
   &:hover {
     transform: translateY(-6px);
-    box-shadow: 0 18px 40px -18px color-mix(in oklab, var(--primary) 55%, transparent);
+    box-shadow:
+      0 18px 40px -18px
+      color-mix(in oklab, var(--primary) 55%, transparent);
   }
 }
 
+/* ============================================================
+   ADMIN DASHBOARD
+   ============================================================ */
+
+/* ---------- Page header ---------- */
+
+.admin-page-header {
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0 0 4px;
+}
+
+.admin-page-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 700;
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+
+.admin-page-sub {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  margin: 0;
+  max-width: 60ch;
+  line-height: 1.5;
+}
+
+.admin-muted {
+  color: var(--muted-foreground);
+  font-size: 14px;
+}
+
+.admin-alert {
+  background: color-mix(in oklab, var(--accent) 10%, var(--card));
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, var(--border));
+  color: var(--accent);
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* ---------- Buttons ---------- */
+
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.admin-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.admin-btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.admin-btn-primary:hover:not(:disabled) {
+  background: color-mix(in oklab, var(--primary) 85%, black);
+  transform: translateY(-1px);
+}
+
+.admin-btn-outline {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.admin-btn-outline:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.admin-btn-small {
+  padding: 7px 12px;
+  font-size: 13px;
+}
+
+.admin-btn-delete {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.admin-btn-delete:hover {
+  background: color-mix(in oklab, var(--accent) 10%, var(--card));
+  border-color: color-mix(in oklab, var(--accent) 35%, var(--border));
+}
+
+.admin-file-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---------- Dashboard stats ---------- */
+
+.admin-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-bottom: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow: hidden;
+  box-shadow: var(--shadow-plank);
+}
+
+.admin-stat {
+  padding: 20px;
+  border-right: 1px solid var(--border);
+}
+
+.admin-stat:last-child {
+  border-right: none;
+}
+
+.admin-stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 5vw, 34px);
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-stat-label {
+  font-size: 13px;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+.admin-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.admin-dashboard-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-plank);
+}
+
+.admin-dashboard-section h2 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+
+.admin-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+.admin-checklist-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 6px;
+  background: var(--border);
+}
+
+.admin-checklist-dot.is-ok {
+  background: var(--primary);
+}
+
+.admin-checklist-dot.is-warn {
+  background: var(--accent);
+}
+
+/* ---------- Tabs ---------- */
+
+.admin-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.admin-tab {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 8px 4px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.admin-tab:hover {
+  color: var(--foreground);
+}
+
+.admin-tab-active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.admin-tab-count {
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 999px;
+}
+
+.admin-tab-active .admin-tab-count {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ---------- Upload form ---------- */
+
+.admin-upload-form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+  box-shadow: var(--shadow-plank);
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  flex: 1 1 220px;
+}
+
+.admin-field input[type="text"],
+.admin-field input[type="file"] {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--foreground);
+  padding: 9px 11px;
+  border: 1px solid var(--input);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.admin-field input[type="text"]:focus,
+.admin-field input[type="file"]:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
+}
+
+.admin-file-hint {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  margin: 2px 0 0;
+}
+
+.admin-preview-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.admin-preview-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+/* ---------- Image / service grids ---------- */
+
+.admin-image-grid,
+.admin-service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.admin-image-tile {
+  position: relative;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: var(--shadow-plank);
+}
+
+.admin-image-tile img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.admin-image-tile .admin-btn-delete {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: color-mix(in oklab, var(--card) 92%, transparent);
+  border: 1px solid var(--border);
+}
+
+.admin-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 20px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--muted-foreground);
+  font-size: 14px;
+}
+
+.admin-service-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--shadow-plank);
+}
+
+.admin-service-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+.admin-service-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  background: var(--muted);
+  border: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+
+.admin-service-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.admin-service-meta {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin: -6px 0 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 720px) {
+  .admin-stat-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-stat:nth-child(2) {
+    border-right: none;
+  }
+
+  .admin-stat:nth-child(3) {
+    grid-column: 1 / -1;
+    border-right: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .admin-upload-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-upload-form .admin-btn {
+    width: 100%;
+  }
+
+  .admin-quick-links {
+    flex-direction: column;
+  }
+
+  .admin-quick-links .admin-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-stat-row {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-stat {
+    border-right: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .admin-stat:first-child {
+    border-top: none;
+  }
+
+  .admin-image-grid,
+  .admin-service-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+
+  .admin-tab {
+    font-size: 13px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY / REDUCED MOTION
+   ============================================================ */
+
 @media (prefers-reduced-motion: reduce) {
+  .admin-btn,
   .reveal,
-  .float-soft {
+  .float-soft,
+  .media-zoom img,
+  .lift {
     animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
     opacity: 1 !important;
     transform: none !important;
-    transition: none !important;
   }
 }
