@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent } from "react";
+import { useEffect, useMemo, useState, type ChangeEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { fetchAdminServices, uploadServiceImage, type AdminService } from "@/admin/lib/api";
 
@@ -15,9 +15,11 @@ function ServicesManager() {
   useEffect(() => {
     fetchAdminServices()
       .then(setServices)
-      .catch(() => setError("Couldn't load services."))
+      .catch(() => setError("Couldn't load services. Refresh to try again."))
       .finally(() => setLoading(false));
   }, []);
+
+  const missingCount = useMemo(() => services.filter((s) => !s.image).length, [services]);
 
   async function handleReplace(service: AdminService, event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -45,6 +47,10 @@ function ServicesManager() {
         <p className="admin-page-sub">
           Each service shows one photo on the Services and About pages. Uploading a replacement
           removes the old one automatically.
+          {missingCount > 0 &&
+            ` ${missingCount} of ${services.length} still ${
+              missingCount === 1 ? "needs" : "need"
+            } a photo.`}
         </p>
       </header>
 
@@ -59,8 +65,11 @@ function ServicesManager() {
               <div className="admin-service-placeholder">No photo yet</div>
             )}
             <p className="admin-service-title">{s.title}</p>
+            <p className="admin-service-meta">
+              {s.image ? "Photo live on site" : "Showing placeholder to visitors"}
+            </p>
             <label className="admin-btn admin-btn-small admin-btn-outline admin-file-btn">
-              {busyId === s.id ? "Uploading…" : "Replace photo"}
+              {busyId === s.id ? "Uploading…" : s.image ? "Replace photo" : "Add photo"}
               <input
                 type="file"
                 accept="image/jpeg,image/png,image/webp"
@@ -71,6 +80,9 @@ function ServicesManager() {
             </label>
           </div>
         ))}
+        {services.length === 0 && (
+          <div className="admin-empty-state">No services configured yet.</div>
+        )}
       </div>
     </div>
   );
