@@ -4,6 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
 import { services } from "@/lib/site";
+import { useServiceImageOverrides } from "@/hooks/useRemoteGallery";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -28,13 +29,17 @@ export const Route = createFileRoute("/services")({
 });
 
 function ServicesPage() {
+  // Uploading a new photo in /admin/services.php overrides the bundled
+  // static image for that service's slug, live, with no redeploy.
+  const imageOverrides = useServiceImageOverrides();
+
   return (
     <>
       <PageHero
         eyebrow="What we do"
         title="One team for the full project"
         subtitle="From architecture drafting and moulding to construction, fit-out, repairs and equipment rentals, we bring practical coordination to residential and commercial work."
-        image={services[2].image}
+        image={imageOverrides[services[2].slug] ?? services[2].image}
       />
 
       <section className="mx-auto max-w-7xl px-5 py-16 lg:px-6 lg:py-20">
@@ -101,7 +106,7 @@ function ServicesPage() {
                 <article className="flex h-full flex-col">
                   <div className="media-zoom aspect-[4/3] overflow-hidden bg-muted">
                     <img
-                      src={s.image}
+                      src={imageOverrides[s.slug] ?? s.image}
                       alt={s.title}
                       loading="lazy"
                       width={1024}
