@@ -34,8 +34,6 @@ function GalleryManager() {
 
   useEffect(load, []);
 
-  // Revoke object URLs when the file selection changes or the component unmounts,
-  // so preview thumbnails don't leak memory.
   useEffect(() => {
     return () => previews.forEach((url) => URL.revokeObjectURL(url));
   }, [previews]);
@@ -138,7 +136,7 @@ function GalleryManager() {
               <span className="admin-file-hint">JPEG, PNG or WebP. Up to 8MB each.</span>
               {previews.length > 0 && (
                 <span className="admin-preview-strip">
-                  {previews.map((src, i) => (
+                  {previews.map((src) => (
                     <img key={src} src={src} alt="" className="admin-preview-thumb" />
                   ))}
                 </span>
@@ -160,7 +158,9 @@ function GalleryManager() {
             >
               {uploading
                 ? "Uploading…"
-                : `Upload ${files.length > 0 ? files.length : ""} to ${active.title}`.trim()}
+                : files.length > 0
+                  ? `Upload ${files.length} photo${files.length > 1 ? "s" : ""}`
+                  : "Upload"}
             </button>
           </form>
 
