@@ -1,4 +1,4 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 
 type Tab = {
   to: string;
@@ -30,23 +30,41 @@ const tabs: Tab[] = [
       </svg>
     ),
   },
+
   {
     to: "/admin/gallery",
     label: "Gallery",
     icon: (active) => (
       <svg {...iconProps(active)}>
-        <rect x="3" y="4" width="18" height="16" rx="2" />
-        <circle cx="8.5" cy="9.5" r="1.5" />
+        <rect
+          x="3"
+          y="4"
+          width="18"
+          height="16"
+          rx="2"
+        />
+        <circle
+          cx="8.5"
+          cy="9.5"
+          r="1.5"
+        />
         <path d="M21 16l-5.5-5.5a1.5 1.5 0 0 0-2.1 0L4 19" />
       </svg>
     ),
   },
+
   {
     to: "/admin/services",
     label: "Services",
     icon: (active) => (
       <svg {...iconProps(active)}>
-        <rect x="3" y="7" width="18" height="13" rx="2" />
+        <rect
+          x="3"
+          y="7"
+          width="18"
+          height="13"
+          rx="2"
+        />
         <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
       </svg>
     ),
@@ -54,21 +72,34 @@ const tabs: Tab[] = [
 ];
 
 export function AdminBottomNav() {
-  const { pathname } = useLocation();
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
 
   return (
-    <nav className="admin-bottom-nav" aria-label="Admin sections">
+    <nav
+      className="admin-bottom-nav"
+      aria-label="Admin sections"
+    >
       {tabs.map((tab) => {
         const active =
-          tab.to === "/admin" ? pathname === "/admin" : pathname.startsWith(tab.to);
+          tab.to === "/admin"
+            ? pathname === "/admin"
+            : pathname.startsWith(tab.to);
+
         return (
           <Link
             key={tab.to}
             to={tab.to}
-            className={active ? "admin-bottom-tab is-active" : "admin-bottom-tab"}
+            className={
+              active
+                ? "admin-bottom-tab is-active"
+                : "admin-bottom-tab"
+            }
             aria-current={active ? "page" : undefined}
           >
             {tab.icon(active)}
+
             <span>{tab.label}</span>
           </Link>
         );
