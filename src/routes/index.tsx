@@ -4,6 +4,7 @@ import heroImage from "@/assets/samandecrd-60.jpg";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
 import { services, featuredWork, videos, PHONE_1, WHATSAPP } from "@/lib/site";
+import { useFeaturedWork, useCombinedVideos } from "@/hooks/useRemoteGallery";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,6 +29,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { images: liveFeaturedWork } = useFeaturedWork(featuredWork);
+  const { videos: allVideos } = useCombinedVideos(videos);
   return (
     <>
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
@@ -228,7 +231,7 @@ function Index() {
             </div>
           </Reveal>
           <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
-            {featuredWork.slice(0, 4).map((g, i) => (
+            {liveFeaturedWork.slice(0, 4).map((g, i) => (
               <Reveal key={g.label} delay={i * 80}>
                 <div
                   className={`media-zoom overflow-hidden border border-border ${i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"}`}
@@ -269,8 +272,8 @@ function Index() {
           </div>
         </Reveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {videos.slice(0, 3).map((video, index) => (
-            <Reveal key={video.title} delay={index * 90}>
+          {allVideos.slice(0, 3).map((video, index) => (
+            <Reveal key={video.title + index} delay={index * 90}>
               <Link
                 to="/videos"
                 className="group block overflow-hidden border border-border bg-background"
@@ -303,7 +306,7 @@ function Index() {
             to="/videos"
             className="mt-8 inline-flex items-center gap-2 text-sm font-extrabold text-accent hover:gap-3"
           >
-            Watch all {videos.length} videos <ArrowRight className="h-4 w-4" />
+            Watch all {allVideos.length} videos <ArrowRight className="h-4 w-4" />
           </Link>
         </Reveal>
       </section>
@@ -349,4 +352,4 @@ function Index() {
       <CtaBand />
     </>
   );
-                }
+}
