@@ -4,6 +4,7 @@ import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { services, workGallery } from "@/lib/site";
+import { useGalleryCategories, useServiceImageOverrides } from "@/hooks/useRemoteGallery";
 
 export const Route = createFileRoute("/services/$serviceId")({
   head: ({ params }) => {
@@ -27,6 +28,11 @@ function ServiceDetailPage() {
   const { serviceId } = Route.useParams();
   const service = services.find((item) => item.slug === serviceId);
 
+  // Live data from the admin dashboard, falling back to the bundled static
+  // set until the API responds or if it's unreachable.
+  const { categories: gallery } = useGalleryCategories(workGallery);
+  const imageOverrides = useServiceImageOverrides();
+
   if (!service) {
     return (
       <section className="mx-auto max-w-7xl px-5 py-24 lg:px-6">
@@ -41,9 +47,11 @@ function ServiceDetailPage() {
 
   const relatedServices = services.filter((item) => item.slug !== service.slug).slice(0, 3);
 
-  // Match this service to its photo set in workGallery by title — both
-  // arrays use the same category names (e.g. "General Construction").
-  const servicePhotos = workGallery.find((group) => group.title === service.navTitle)?.images ?? [];
+  // Match this service to its photo set by category title — both the
+  // services list and gallery categories use the same category names
+  // (e.g. "General Construction").
+  const servicePhotos = gallery.find((group) => group.title === service.navTitle)?.images ?? [];
+  const heroImage = imageOverrides[service.slug] ?? service.image;
 
   return (
     <>
@@ -51,7 +59,7 @@ function ServiceDetailPage() {
         eyebrow="Our services"
         title={service.title}
         subtitle={service.text}
-        image={service.image}
+        image={heroImage}
       />
 
       <section className="mx-auto grid max-w-7xl gap-12 px-5 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:px-6 lg:py-24">
@@ -108,7 +116,7 @@ function ServiceDetailPage() {
             </div>
             <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
               {servicePhotos.map((item, index) => (
-                <Reveal key={item.label} delay={index * 60}>
+                <Reveal key={item.label + index} delay={index * 60}>
                   <figure className="media-zoom group overflow-hidden border border-border bg-background">
                     <div className="aspect-square">
                       <img
