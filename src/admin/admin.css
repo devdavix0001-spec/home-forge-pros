@@ -1,220 +1,462 @@
 /*
- * Site control panel — dark "workshop" theme, isolated from the main
- * site's design system. Every selector is prefixed `admin-` and every
- * custom property is prefixed `--admin-` so nothing here can collide
- * with or be overridden by the marketing site's Tailwind theme.
+ * Site control panel — matched to the main site's design system.
+ *
+ * The admin UI intentionally uses the same visual language as the
+ * marketing site while remaining fully isolated:
+ *
+ * - Every selector is prefixed with `admin-`
+ * - Admin-specific custom properties use `--admin-`
+ * - Uses the site's existing --background, --card, --primary,
+ *   --secondary, --accent, --border, --muted-foreground, etc.
  */
 
+/* ============================================================
+   ADMIN ROOT
+   ============================================================ */
+
 .admin-root {
-  --admin-ink: #eeeae1;
-  --admin-ink-muted: #a4a294;
-  --admin-ground: #17181a;
-  --admin-panel: #202225;
-  --admin-line: #34353a;
-  --admin-rust: #c2703a;
-  --admin-rust-strong: #d98550;
-  --admin-danger: #c25a4a;
-  --admin-ok: #7d9b6a;
-  --admin-font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --admin-font-data: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --admin-radius: var(--radius);
+  --admin-shadow: var(--shadow-plank);
 
   min-height: 100vh;
-  background: var(--admin-ground);
-  color: var(--admin-ink);
-  font-family: var(--admin-font-ui);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(in oklab, var(--primary) 5%, transparent),
+      transparent 34rem
+    ),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.admin-root * {
+.admin-root *,
+.admin-root *::before,
+.admin-root *::after {
   box-sizing: border-box;
 }
 
 .admin-root button,
-.admin-root input {
-  font-family: inherit;
-  color: inherit;
+.admin-root input,
+.admin-root textarea,
+.admin-root select {
+  font: inherit;
 }
 
-/* ── Auth screen ── */
+/* ============================================================
+   AUTH
+   ============================================================ */
 
 .admin-auth-screen {
   min-height: 100vh;
   display: grid;
   place-items: center;
   padding: 24px;
-  background-image: linear-gradient(var(--admin-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--admin-line) 1px, transparent 1px);
-  background-size: 32px 32px;
-  background-color: var(--admin-ground);
+
+  background:
+    radial-gradient(
+      circle at 20% 10%,
+      color-mix(in oklab, var(--secondary) 8%, transparent),
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at 85% 90%,
+      color-mix(in oklab, var(--accent) 7%, transparent),
+      transparent 26rem
+    ),
+    var(--background);
 }
 
 .admin-auth-card {
   width: 100%;
-  max-width: 340px;
-  background: var(--admin-panel);
-  border: 1px solid var(--admin-line);
-  padding: 32px 28px;
+  max-width: 420px;
+
+  padding: 34px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
+
+  background: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-plank);
 }
 
 .admin-auth-mark {
-  font-family: var(--admin-font-data);
-  letter-spacing: 0.18em;
-  color: var(--admin-rust);
-  font-size: 12px;
+  width: fit-content;
+
   margin: 0;
+  padding: 7px 11px;
+
+  border-radius: 999px;
+
+  background: var(--accent);
+  color: white;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .admin-auth-card h1 {
-  margin: 0;
-  font-size: 22px;
+  margin: 2px 0 0;
+
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .admin-auth-sub {
   margin: -8px 0 4px;
-  color: var(--admin-ink-muted);
+
+  color: var(--muted-foreground);
   font-size: 14px;
+  line-height: 1.55;
 }
 
-/* ── App shell ── */
+/* ============================================================
+   APP SHELL
+   ============================================================ */
 
 .admin-shell {
-  display: grid;
-  grid-template-columns: 220px 1fr;
   min-height: 100vh;
+
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
 }
 
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
 .admin-sidebar {
-  border-right: 1px solid var(--admin-line);
-  padding: 24px 18px;
+  position: sticky;
+  top: 0;
+
+  height: 100vh;
+
   display: flex;
   flex-direction: column;
-  gap: 28px;
+
+  padding: 28px 18px;
+
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--card) 96%, var(--primary)),
+      var(--card)
+    );
+
+  border-right: 1px solid var(--border);
 }
 
 .admin-brand {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
+
+  padding: 4px 10px 26px;
 }
 
 .admin-brand-mark {
-  font-family: var(--admin-font-data);
-  letter-spacing: 0.18em;
-  color: var(--admin-rust);
-  font-size: 14px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.admin-brand-mark::after {
+  content: ".";
+  color: var(--accent);
 }
 
 .admin-brand-sub {
-  color: var(--admin-ink-muted);
+  color: var(--muted-foreground);
   font-size: 12px;
+  font-weight: 500;
 }
 
 .admin-nav {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .admin-nav-item {
-  color: var(--admin-ink-muted);
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 42px;
+  padding: 9px 12px;
+
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+
+  color: var(--muted-foreground);
   text-decoration: none;
-  padding: 9px 10px;
+
   font-size: 14px;
-  border-left: 2px solid transparent;
+  font-weight: 600;
+
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
 }
 
 .admin-nav-item:hover {
-  color: var(--admin-ink);
+  color: var(--foreground);
+
+  background: var(--muted);
+  border-color: var(--border);
+
+  transform: translateX(2px);
 }
 
 .admin-nav-item.admin-active {
-  color: var(--admin-ink);
-  border-left-color: var(--admin-rust);
-  background: rgba(194, 112, 58, 0.08);
+  color: var(--primary);
+
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--primary) 10%, var(--card)),
+      var(--card)
+    );
+
+  border-color: color-mix(
+    in oklab,
+    var(--primary) 20%,
+    var(--border)
+  );
+}
+
+.admin-nav-item.admin-active::before {
+  content: "";
+
+  position: absolute;
+  left: -1px;
+  top: 9px;
+  bottom: 9px;
+
+  width: 3px;
+
+  border-radius: 0 999px 999px 0;
+
+  background: var(--primary);
 }
 
 .admin-sign-out {
   margin-top: auto;
 }
 
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
 .admin-content {
-  padding: 40px 44px;
-  max-width: 980px;
+  width: 100%;
+  max-width: 1120px;
+
+  padding: 44px 48px 64px;
 }
+
+/* Centered loading / empty screen */
 
 .admin-screen-center {
   min-height: 100vh;
+
   display: grid;
   place-items: center;
-  color: var(--admin-ink-muted);
+
+  color: var(--muted-foreground);
+  font-size: 14px;
 }
 
-/* ── Shared elements ── */
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.admin-page-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid var(--border);
+}
 
 .admin-eyebrow {
-  font-family: var(--admin-font-data);
+  margin: 0 0 7px;
+
+  color: var(--primary);
+
   font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--admin-rust);
-  margin: 0 0 8px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .admin-page-header h1 {
-  margin: 0 0 6px;
-  font-size: 26px;
+  margin: 0 0 7px;
+
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 
 .admin-page-sub {
-  color: var(--admin-ink-muted);
+  max-width: 62ch;
+
+  margin: 0;
+
+  color: var(--muted-foreground);
+
   font-size: 14px;
-  max-width: 52ch;
-  margin: 0 0 28px;
+  line-height: 1.6;
 }
 
 .admin-muted {
-  color: var(--admin-ink-muted);
+  color: var(--muted-foreground);
+  font-size: 14px;
 }
 
+/* ============================================================
+   ALERT
+   ============================================================ */
+
 .admin-alert {
-  background: rgba(194, 90, 74, 0.12);
-  border: 1px solid var(--admin-danger);
-  color: #f0c9c2;
-  padding: 10px 14px;
+  margin: 0 0 20px;
+  padding: 12px 15px;
+
+  background:
+    color-mix(
+      in oklab,
+      var(--accent) 9%,
+      var(--card)
+    );
+
+  border: 1px solid
+    color-mix(
+      in oklab,
+      var(--accent) 32%,
+      var(--border)
+    );
+
+  border-radius: var(--radius);
+
+  color: var(--accent);
+
   font-size: 14px;
-  margin: 0 0 16px;
+  line-height: 1.5;
 }
+
+/* ============================================================
+   FIELDS
+   ============================================================ */
 
 .admin-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
+
+  color: var(--muted-foreground);
+
   font-size: 13px;
-  color: var(--admin-ink-muted);
+  font-weight: 700;
 }
 
 .admin-field input {
-  background: var(--admin-ground);
-  border: 1px solid var(--admin-line);
-  color: var(--admin-ink);
+  width: 100%;
+
   padding: 10px 12px;
+
+  background: var(--background);
+  color: var(--foreground);
+
+  border: 1px solid var(--input);
+  border-radius: var(--radius);
+
   font-size: 14px;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
 }
 
-.admin-field input:focus-visible {
-  outline: 2px solid var(--admin-rust);
-  outline-offset: 1px;
+.admin-field input::placeholder {
+  color: var(--muted-foreground);
+  opacity: 0.7;
 }
+
+.admin-field input:hover {
+  border-color: color-mix(
+    in oklab,
+    var(--primary) 30%,
+    var(--input)
+  );
+}
+
+.admin-field input:focus,
+.admin-field input:focus-visible {
+  outline: none;
+
+  border-color: var(--ring);
+
+  box-shadow:
+    0 0 0 3px
+    color-mix(
+      in oklab,
+      var(--ring) 15%,
+      transparent
+    );
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 
 .admin-btn {
-  border: 1px solid var(--admin-line);
-  background: var(--admin-panel);
-  color: var(--admin-ink);
-  padding: 10px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-height: 40px;
+
+  padding: 9px 17px;
+
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+
+  background: var(--card);
+  color: var(--foreground);
+
+  font-family: var(--font-sans);
   font-size: 14px;
+  font-weight: 700;
+
   cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .admin-btn:disabled {
@@ -222,153 +464,467 @@
   cursor: not-allowed;
 }
 
+.admin-btn:not(:disabled):active {
+  transform: translateY(1px);
+}
+
 .admin-btn-primary {
-  background: var(--admin-rust);
-  border-color: var(--admin-rust);
-  color: #1a1206;
-  font-weight: 600;
+  background: var(--primary);
+  color: var(--primary-foreground);
+
+  box-shadow:
+    0 6px 16px -10px
+    color-mix(
+      in oklab,
+      var(--primary) 70%,
+      transparent
+    );
 }
 
 .admin-btn-primary:hover:not(:disabled) {
-  background: var(--admin-rust-strong);
+  background: color-mix(
+    in oklab,
+    var(--primary) 86%,
+    black
+  );
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 10px 22px -12px
+    color-mix(
+      in oklab,
+      var(--primary) 75%,
+      transparent
+    );
 }
 
 .admin-btn-outline {
   background: transparent;
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.admin-btn-outline:hover:not(:disabled) {
+  border-color: color-mix(
+    in oklab,
+    var(--primary) 45%,
+    var(--border)
+  );
+
+  color: var(--primary);
+  background: color-mix(
+    in oklab,
+    var(--primary) 5%,
+    transparent
+  );
 }
 
 .admin-btn-ghost {
   background: transparent;
   border-color: transparent;
-  color: var(--admin-ink-muted);
+  color: var(--muted-foreground);
 }
 
-.admin-btn-ghost:hover {
-  color: var(--admin-ink);
+.admin-btn-ghost:hover:not(:disabled) {
+  background: var(--muted);
+  color: var(--foreground);
 }
 
 .admin-btn-small {
+  min-height: 34px;
   padding: 7px 12px;
+
   font-size: 13px;
 }
 
 .admin-file-btn {
-  display: inline-block;
-  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* ── Dashboard ── */
+/* ============================================================
+   DASHBOARD STATS
+   ============================================================ */
 
 .admin-stat-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--admin-line);
-  border: 1px solid var(--admin-line);
-  margin-bottom: 28px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  margin-bottom: 30px;
+
+  overflow: hidden;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+
+  box-shadow: var(--shadow-plank);
 }
 
 .admin-stat {
-  background: var(--admin-panel);
-  padding: 20px;
+  min-width: 0;
+
+  padding: 22px;
+
+  border-right: 1px solid var(--border);
+
+  transition:
+    background-color 0.2s ease;
+}
+
+.admin-stat:last-child {
+  border-right: none;
+}
+
+.admin-stat:hover {
+  background: color-mix(
+    in oklab,
+    var(--primary) 3%,
+    var(--card)
+  );
 }
 
 .admin-stat-number {
-  font-family: var(--admin-font-data);
-  font-size: 32px;
-  margin: 0;
-  color: var(--admin-rust);
+  margin: 0 0 5px;
+
+  color: var(--primary);
+
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 38px);
+  font-weight: 700;
+  line-height: 1;
+
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.035em;
 }
 
 .admin-stat-label {
-  margin: 4px 0 0;
-  color: var(--admin-ink-muted);
+  margin: 0;
+
+  color: var(--muted-foreground);
+
   font-size: 13px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   DASHBOARD SECTIONS
+   ============================================================ */
+
+.admin-dashboard-section {
+  margin-bottom: 20px;
+  padding: 22px;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+
+  box-shadow: var(--shadow-plank);
+}
+
+.admin-dashboard-section h2 {
+  margin: 0 0 14px;
+
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .admin-quick-links {
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-bottom: 30px;
 }
 
-/* ── Gallery ── */
+.admin-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.admin-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  color: var(--muted-foreground);
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.admin-checklist-dot {
+  flex: none;
+
+  width: 8px;
+  height: 8px;
+
+  margin-top: 6px;
+
+  border-radius: 999px;
+
+  background: var(--border);
+}
+
+.admin-checklist-dot.is-ok {
+  background: var(--primary);
+}
+
+.admin-checklist-dot.is-warn {
+  background: var(--accent);
+}
+
+/* ============================================================
+   TABS
+   ============================================================ */
 
 .admin-tabs {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 6px;
-  margin-bottom: 24px;
+
+  overflow-x: auto;
+
+  margin-bottom: 22px;
+  padding: 0 0 8px;
+
+  border-bottom: 1px solid var(--border);
+
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 
 .admin-tab {
-  border: 1px solid var(--admin-line);
-  background: transparent;
-  color: var(--admin-ink-muted);
-  padding: 7px 12px;
-  font-size: 13px;
-  cursor: pointer;
-  display: flex;
+  position: relative;
+
+  flex: none;
+
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+
+  padding: 8px 5px 11px;
+
+  background: transparent;
+  border: none;
+
+  color: var(--muted-foreground);
+
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition: color 0.15s ease;
+}
+
+.admin-tab::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -9px;
+
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  transition: background-color 0.15s ease;
+}
+
+.admin-tab:hover {
+  color: var(--foreground);
 }
 
 .admin-tab-active {
-  border-color: var(--admin-rust);
-  color: var(--admin-ink);
+  color: var(--primary);
+}
+
+.admin-tab-active::after {
+  background: var(--primary);
 }
 
 .admin-tab-count {
-  font-family: var(--admin-font-data);
+  padding: 2px 7px;
+
+  border-radius: 999px;
+
+  background: var(--muted);
+  color: var(--muted-foreground);
+
   font-size: 11px;
-  color: var(--admin-ink-muted);
+  font-weight: 800;
 }
+
+.admin-tab-active .admin-tab-count {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ============================================================
+   UPLOAD FORM
+   ============================================================ */
 
 .admin-upload-form {
   display: flex;
   flex-wrap: wrap;
-  align-items: end;
-  gap: 14px;
-  padding: 18px;
-  border: 1px solid var(--admin-line);
+  align-items: flex-end;
+  gap: 16px;
+
   margin-bottom: 24px;
+  padding: 20px;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+
+  box-shadow: var(--shadow-plank);
 }
 
 .admin-upload-form .admin-field {
   flex: 1 1 220px;
 }
 
+.admin-file-hint {
+  margin: 1px 0 0;
+
+  color: var(--muted-foreground);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.admin-preview-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-top: 4px;
+}
+
+.admin-preview-thumb {
+  width: 58px;
+  height: 58px;
+
+  object-fit: cover;
+
+  border: 1px solid var(--border);
+  border-radius: 6px;
+
+  background: var(--muted);
+}
+
+/* ============================================================
+   IMAGE GRID
+   ============================================================ */
+
 .admin-image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(180px, 1fr)
+    );
+
+  gap: 16px;
 }
 
 .admin-image-tile {
-  margin: 0;
-  border: 1px solid var(--admin-line);
   position: relative;
+
+  margin: 0;
+
   overflow: hidden;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+
+  box-shadow: var(--shadow-plank);
+
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease,
+    border-color 0.2s ease;
+}
+
+.admin-image-tile:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    color-mix(
+      in oklab,
+      var(--primary) 28%,
+      var(--border)
+    );
+
+  box-shadow:
+    0 18px 38px -20px
+    color-mix(
+      in oklab,
+      var(--primary) 35%,
+      transparent
+    );
 }
 
 .admin-image-tile img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
   display: block;
+
+  width: 100%;
+  aspect-ratio: 4 / 3;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.admin-btn-delete {
+.admin-image-tile:hover img {
+  transform: scale(1.04);
+}
+
+.admin-image-tile .admin-btn-delete {
   position: absolute;
-  bottom: 6px;
-  right: 6px;
-  background: rgba(23, 24, 26, 0.85);
-  border: 1px solid var(--admin-danger);
-  color: #f0c9c2;
-  font-size: 11px;
-  padding: 5px 8px;
-  cursor: pointer;
+
+  top: 9px;
+  right: 9px;
+
   opacity: 0;
-  transition: opacity 0.15s;
+
+  background:
+    color-mix(
+      in oklab,
+      var(--card) 94%,
+      transparent
+    );
+
+  border: 1px solid var(--border);
+
+  color: var(--accent);
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    opacity 0.18s ease,
+    background-color 0.18s ease;
 }
 
 .admin-image-tile:hover .admin-btn-delete,
@@ -376,61 +932,304 @@
   opacity: 1;
 }
 
-/* ── Services ── */
+.admin-image-tile .admin-btn-delete:hover {
+  background:
+    color-mix(
+      in oklab,
+      var(--accent) 10%,
+      var(--card)
+    );
+
+  border-color:
+    color-mix(
+      in oklab,
+      var(--accent) 35%,
+      var(--border)
+    );
+}
+
+/* ============================================================
+   SERVICE GRID
+   ============================================================ */
 
 .admin-service-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 14px;
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(210px, 1fr)
+    );
+
+  gap: 16px;
 }
 
 .admin-service-card {
-  border: 1px solid var(--admin-line);
-  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 11px;
+
+  padding: 14px;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+
+  box-shadow: var(--shadow-plank);
+
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease,
+    border-color 0.2s ease;
+}
+
+.admin-service-card:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    color-mix(
+      in oklab,
+      var(--primary) 28%,
+      var(--border)
+    );
+
+  box-shadow:
+    0 18px 38px -20px
+    color-mix(
+      in oklab,
+      var(--primary) 35%,
+      transparent
+    );
 }
 
 .admin-service-card img {
+  display: block;
+
   width: 100%;
   aspect-ratio: 4 / 3;
+
   object-fit: cover;
+
+  border-radius: calc(var(--radius) - 2px);
 }
 
 .admin-service-placeholder {
   width: 100%;
   aspect-ratio: 4 / 3;
-  display: grid;
-  place-items: center;
-  background: var(--admin-ground);
-  color: var(--admin-ink-muted);
-  font-size: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--muted);
+
+  border: 1px dashed var(--border);
+  border-radius: calc(var(--radius) - 2px);
+
+  color: var(--muted-foreground);
+
+  font-size: 13px;
 }
 
 .admin-service-title {
   margin: 0;
+
+  color: var(--card-foreground);
+
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.admin-service-meta {
+  margin: -5px 0 0;
+
+  color: var(--muted-foreground);
+
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   EMPTY STATES
+   ============================================================ */
+
+.admin-empty-state {
+  grid-column: 1 / -1;
+
+  padding: 52px 20px;
+
+  text-align: center;
+
+  background:
+    color-mix(
+      in oklab,
+      var(--muted) 45%,
+      var(--card)
+    );
+
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-xl);
+
+  color: var(--muted-foreground);
+
   font-size: 14px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .admin-shell {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+
+  .admin-content {
+    padding: 34px 30px 50px;
+  }
 }
 
 @media (max-width: 720px) {
   .admin-shell {
+    display: block;
+  }
+
+  .admin-sidebar {
+    position: relative;
+
+    width: 100%;
+    height: auto;
+
+    padding: 16px;
+
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .admin-brand {
+    padding: 4px 6px 16px;
+  }
+
+  .admin-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  .admin-nav-item {
+    min-height: 40px;
+  }
+
+  .admin-sign-out {
+    margin-top: 12px;
+  }
+
+  .admin-content {
+    max-width: none;
+    padding: 28px 20px 44px;
+  }
+
+  .admin-stat-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-stat:nth-child(2) {
+    border-right: none;
+  }
+
+  .admin-stat:nth-child(3) {
+    grid-column: 1 / -1;
+
+    border-top: 1px solid var(--border);
+    border-right: none;
+  }
+
+  .admin-upload-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-upload-form .admin-btn {
+    width: 100%;
+  }
+
+  .admin-quick-links {
+    flex-direction: column;
+  }
+
+  .admin-quick-links .admin-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-auth-card {
+    padding: 26px 20px;
+  }
+
+  .admin-content {
+    padding: 24px 16px 40px;
+  }
+
+  .admin-page-header {
+    margin-bottom: 24px;
+  }
+
+  .admin-page-header h1 {
+    font-size: 24px;
+  }
+
+  .admin-stat-row {
     grid-template-columns: 1fr;
   }
-  .admin-sidebar {
+
+  .admin-stat {
     border-right: none;
-    border-bottom: 1px solid var(--admin-line);
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    border-top: 1px solid var(--border);
   }
-  .admin-nav {
-    flex-direction: row;
+
+  .admin-stat:first-child {
+    border-top: none;
   }
-  .admin-sign-out {
-    margin-top: 0;
+
+  .admin-image-grid,
+  .admin-service-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap: 10px;
   }
-  .admin-content {
-    padding: 24px;
+
+  .admin-service-card {
+    padding: 10px;
+  }
+
+  .admin-tabs {
+    margin-left: -2px;
+    margin-right: -2px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+.admin-root :focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-root *,
+  .admin-root *::before,
+  .admin-root *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
   }
 }
