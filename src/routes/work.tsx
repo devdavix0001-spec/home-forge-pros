@@ -4,6 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { CtaBand } from "@/components/CtaBand";
 import { workGallery } from "@/lib/site";
+import { useGalleryCategories } from "@/hooks/useRemoteGallery";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
@@ -21,7 +22,10 @@ export const Route = createFileRoute("/work")({
 
 function WorkPage() {
   const [activeCategory, setActiveCategory] = useState(0);
-  const category = workGallery[activeCategory];
+  // Live photos from the admin dashboard, falling back to the bundled
+  // static set (site.ts) until the API responds or if it's unreachable.
+  const { categories: gallery } = useGalleryCategories(workGallery);
+  const category = gallery[activeCategory] ?? gallery[0];
 
   return (
     <>
@@ -29,7 +33,7 @@ function WorkPage() {
         eyebrow="Our work"
         title="Made for real homes and working sites"
         subtitle="A look at the joinery, fittings, interiors and building work we deliver for homes, offices and commercial projects around Dodowa."
-        image={workGallery[0].images[0].src}
+        image={gallery[0]?.images[0]?.src ?? workGallery[0].images[0].src}
       />
 
       <section className="mx-auto max-w-7xl px-5 py-20 lg:px-6 lg:py-24">
@@ -44,7 +48,7 @@ function WorkPage() {
         </div>
 
         <div className="mb-10 flex gap-6 overflow-x-auto border-b border-border">
-          {workGallery.map((group, index) => (
+          {gallery.map((group, index) => (
             <button
               key={group.title}
               type="button"
@@ -61,8 +65,8 @@ function WorkPage() {
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {category.images.map((item, index) => (
-            <Reveal key={item.label} delay={index * 60}>
+          {category?.images.map((item, index) => (
+            <Reveal key={item.label + index} delay={index * 60}>
               <figure className="media-zoom group overflow-hidden border border-border bg-background">
                 <div className="aspect-square">
                   <img
@@ -77,6 +81,11 @@ function WorkPage() {
               </figure>
             </Reveal>
           ))}
+          {category?.images.length === 0 && (
+            <p className="col-span-full text-sm text-muted-foreground">
+              No photos in this category yet — check back soon.
+            </p>
+          )}
         </div>
       </section>
 
