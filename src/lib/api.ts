@@ -10,7 +10,7 @@
  *   https://api.samanadecrd.com
  */
 
-const API_URL = import.meta.env.VITE_API_URL ?? "https://api.samanadecrd.com/api";
+const API_URL = import.meta.env.VITE_API_URL ?? "https://api.samanadecrd.com";
 
 export interface GalleryImage {
   src: string;
